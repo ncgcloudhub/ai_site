@@ -112,3 +112,5 @@ Route::get('/write', function () {
 })->name('openai.write');
 
 Route::post('/write/generate', [OpenAIController::class, 'openaigenerate'])->name('openai.generate');
+
+Route::get('/blog/generate', [OpenAIController::class, 'BlogGenerate'])->name('blog.generate');

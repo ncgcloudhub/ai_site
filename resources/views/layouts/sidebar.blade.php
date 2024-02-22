@@ -273,7 +273,7 @@
                                 <a href="{{route('openai.write')}}" target="_blank" class="nav-link" >Open AI Writer</a>
                             </li>
                             <li class="nav-item">
-                                <a href="layouts-two-column" target="_blank" class="nav-link" >@lang('translation.two-column')</a>
+                                <a href="{{route('blog.generate')}}" target="_blank" class="nav-link" >Writer 2</a>
                             </li>
                             <li class="nav-item">
                                 <a href="layouts-vertical-hovered" target="_blank" class="nav-link" >@lang('translation.hovered')</a>

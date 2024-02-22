@@ -68,6 +68,11 @@ class OpenAIController extends Controller
 		$content = trim($result['choices'][0]['text']);
 	
 	
-		return view('backend.openai.writer', compact('title', 'content'));
+		return view('backend.openai.blog_generate', compact('title', 'content'));
 	}
+
+	public function BlogGenerate(){
+        // $brands = Brand::latest()->get();
+        return view('backend.openai.blog_generate');
+    }
 }
