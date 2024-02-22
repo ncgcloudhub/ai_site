@@ -34,7 +34,7 @@
 
                             <div class="col-md-12">
                                 <label for="blog_title" class="form-label">Title of the blog</label>
-                                <input type="text" name="blog_title" class="form-control" id="blog_title" placeholder="Enter Blog Title">
+                                <input type="text" name="title" class="form-control" id="title" placeholder="Enter Blog Title">
                             </div>
 
                             <div class="col-md-12">
@@ -61,8 +61,9 @@
             
                 <div class="col-md-12">
                     <label for="max_result_length" class="form-label">Max Result Length</label>
-                    <input type="text" name="max_result_length" class="form-control" id="max_result_length" placeholder="Enter Blog Title">
+                    <input type="number" name="max_result_length" class="form-control" id="max_result_length" placeholder="Enter Max Result Length">
                 </div>
+                
 
                 <div class="row">
                     <div class="col-md-6">
@@ -92,7 +93,8 @@
 </div>
 <div class="col-12">
     <div class="text-end">
-        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Generate">
+        <button class="btn btn-rounded btn-primary mb-5">Generate</button>
+        {{-- <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Generate"> --}}
     </div>
 </div>
                         </form>

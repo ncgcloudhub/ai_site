@@ -49,11 +49,11 @@ class OpenAIController extends Controller
 		if ($input->title == null) {
 			return;
 		}
-	
+
 		$title = $input->title;
-	
-		$client = OpenAI::client($setting->openaiapikey);
-	
+		
+		$client = OpenAI::client('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');
+		$max_tokens = intval($input->max_result_length); 
 	
 		$result = $client->completions()->create([
 			"model" => $setting->openaimodel,
@@ -61,18 +61,19 @@ class OpenAIController extends Controller
 			"top_p" => 1,
 			"frequency_penalty" => 0,
 			"presence_penalty" => 0,
-			'max_tokens' => 100,
+			'max_tokens' => $max_tokens,
 			'prompt' => sprintf('Write article about: %s', $title),
 		]);
 	
 		$content = trim($result['choices'][0]['text']);
-	
+	    // dd($content);
 	
 		return view('backend.openai.blog_generate', compact('title', 'content'));
 	}
 
 	public function BlogGenerate(){
-        // $brands = Brand::latest()->get();
-        return view('backend.openai.blog_generate');
+		$title = '';
+		$content = '';
+        return view('backend.openai.blog_generate', compact('title', 'content'));
     }
 }
