@@ -57,6 +57,9 @@
                         </ul>
                     </div>
                 </li> <!-- end Dashboard Menu -->
+
+                
+
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse"
                         role="button" aria-expanded="false" aria-controls="sidebarApps">
@@ -245,6 +248,29 @@
                             </li>
                             <li class="nav-item">
                                 <a href="layouts-detached" target="_blank" class="nav-link" >@lang('translation.detached')</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="layouts-two-column" target="_blank" class="nav-link" >@lang('translation.two-column')</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="layouts-vertical-hovered" target="_blank" class="nav-link" >@lang('translation.hovered')</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> <!-- end Dashboard Menu -->
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarAIsettings" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarAIsettings">
+                        <i class="las la-columns"></i> <span >AI Settings</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarAIsettings">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{route('openai.settings.view')}}" target="_blank" class="nav-link" >Open AI Settings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('openai.write')}}" target="_blank" class="nav-link" >Open AI Writer</a>
                             </li>
                             <li class="nav-item">
                                 <a href="layouts-two-column" target="_blank" class="nav-link" >@lang('translation.two-column')</a>

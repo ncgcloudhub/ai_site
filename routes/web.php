@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SSOController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\OpenAIController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -100,3 +101,14 @@ Route::get("/logged-out", function() {
 });
 
 
+Route::get('/openaisettings/view', [OpenAIController::class, 'OpenAIsettingsView'])->name('openai.settings.view');
+
+Route::post('/openaisettings/store', [OpenAIController::class, 'StoreOpenAIsettings'])->name('openai.settings.store');
+
+Route::get('/write', function () {
+    $title = '';
+    $content = '';
+    return view('backend.openai.writer', compact('title', 'content'));
+})->name('openai.write');
+
+Route::post('/write/generate', [OpenAIController::class, 'openaigenerate'])->name('openai.generate');
