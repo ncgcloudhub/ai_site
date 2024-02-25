@@ -3,6 +3,8 @@
 use App\Http\Controllers\SSOController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\OpenAIController;
+use App\Http\Controllers\CustomCategoryTemplateController;
+use App\Http\Controllers\CustomCategroyTemplateController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -114,3 +116,7 @@ Route::get('/write', function () {
 Route::post('/write/generate', [OpenAIController::class, 'openaigenerate'])->name('openai.generate');
 
 Route::get('/blog/generate', [OpenAIController::class, 'BlogGenerate'])->name('blog.generate');
+
+Route::get('/custom/category/add', [CustomCategoryTemplateController::class, 'CustomCategoryTemplateAdd'])->name('custom.category.add');
+
+Route::post('/custom/category/store', [CustomCategoryTemplateController::class, 'CustomCategoryTemplateStore'])->name('custom.category.store');

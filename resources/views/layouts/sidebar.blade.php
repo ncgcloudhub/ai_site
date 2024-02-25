@@ -267,17 +267,16 @@
                     <div class="collapse menu-dropdown" id="sidebarAIsettings">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{route('openai.settings.view')}}" target="_blank" class="nav-link" >Open AI Settings</a>
+                                <a href="{{route('openai.settings.view')}}" class="nav-link" >Open AI Settings</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('openai.write')}}" target="_blank" class="nav-link" >Open AI Writer</a>
+                                <a href="{{route('custom.category.add')}}" class="nav-link" >Custom Category Add</a>
                             </li>
+
                             <li class="nav-item">
-                                <a href="{{route('blog.generate')}}" target="_blank" class="nav-link" >Writer 2</a>
+                                <a href="{{route('blog.generate')}}" class="nav-link" >Writer 2</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="layouts-vertical-hovered" target="_blank" class="nav-link" >@lang('translation.hovered')</a>
-                            </li>
+                            
                         </ul>
                     </div>
                 </li> <!-- end Dashboard Menu -->
