@@ -76,4 +76,5 @@ class OpenAIController extends Controller
 		$content = '';
         return view('backend.openai.blog_generate', compact('title', 'content'));
     }
+	
 }
