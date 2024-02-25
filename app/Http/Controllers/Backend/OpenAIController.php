@@ -51,10 +51,23 @@ class OpenAIController extends Controller
 		}
 
 		$title = $input->title;
+		$main_points = $input->main_points;
+		$tone = 'professional';
+		$max_tokens = 100;
 		
 		$client = OpenAI::client('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');
-		$max_tokens = intval($input->max_result_length); 
-	
+
+		if($input->max_result_length != NULL){
+			$max_tokens = intval($input->max_result_length); 
+		}
+
+		if($input->tone != NULL){
+			$tone = $input->tone; 
+		}
+		
+
+		$prompt = 'Write article about ' . $title . ' and it should include main points such as ' . $main_points . 'and the tone should be ' . $tone;
+       
 		$result = $client->completions()->create([
 			"model" => $setting->openaimodel,
 			"temperature" => 0.7,
@@ -62,7 +75,7 @@ class OpenAIController extends Controller
 			"frequency_penalty" => 0,
 			"presence_penalty" => 0,
 			'max_tokens' => $max_tokens,
-			'prompt' => sprintf('Write article about: %s', $title),
+			'prompt' => $prompt,
 		]);
 	
 		$content = trim($result['choices'][0]['text']);
