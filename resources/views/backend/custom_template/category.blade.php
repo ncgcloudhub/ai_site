@@ -47,6 +47,23 @@
                 </div>
             </div>
            </div>
+
+           <div class="col-5">
+
+            <div class="card">
+            
+                <div class="card-body pt-0">
+
+                    <h6 class="text-uppercase fw-semibold mt-4 mb-3 text-muted">Category List</h6>
+                    <ul class="list-group">
+                        @foreach ($categories as $item)
+                        <li class="list-group-item"><i class="{{$item->category_icon}}"></i>{{$item->category_name}}</li>
+                        @endforeach
+                    </ul>
+
+                </div><!-- end cardbody -->
+            </div>
+           </div>
          
  
 </div>

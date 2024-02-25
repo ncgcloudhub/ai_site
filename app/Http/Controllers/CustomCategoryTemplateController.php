@@ -9,8 +9,8 @@ use Illuminate\Support\Carbon;
 class CustomCategoryTemplateController extends Controller
 {
     public function CustomCategoryTemplateAdd(){
-        // $brands = Brand::latest()->get();
-        return view('backend.custom_template.category');
+        $categories = CustomTemplateCategory::latest()->get();
+        return view('backend.custom_template.category', compact('categories'));
     }
 
     public function CustomCategoryTemplateStore (Request $request){
