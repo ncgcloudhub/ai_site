@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CustomTemplateController;
 use App\Http\Controllers\SSOController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\OpenAIController;
@@ -120,3 +121,5 @@ Route::get('/blog/generate', [OpenAIController::class, 'BlogGenerate'])->name('b
 Route::get('/custom/category/add', [CustomCategoryTemplateController::class, 'CustomCategoryTemplateAdd'])->name('custom.category.add');
 
 Route::post('/custom/category/store', [CustomCategoryTemplateController::class, 'CustomCategoryTemplateStore'])->name('custom.category.store');
+
+Route::get('/custom/template/add', [CustomTemplateController::class, 'CustomTemplateAdd'])->name('custom.template.add');

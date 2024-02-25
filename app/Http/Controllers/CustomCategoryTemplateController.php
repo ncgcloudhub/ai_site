@@ -30,8 +30,7 @@ class CustomCategoryTemplateController extends Controller
               'alert-type' => 'success'
           );
   
-          // return redirect()->route('manage-product')->with($notification);
           return redirect()->back()->with($notification);
   
-      } // end method
+      }
 }

@@ -276,6 +276,11 @@
                             <li class="nav-item">
                                 <a href="{{route('blog.generate')}}" class="nav-link" >Writer 2</a>
                             </li>
+
+
+                            <li class="nav-item">
+                                <a href="{{route('custom.template.add')}}" class="nav-link" >Custom Template Add</a>
+                            </li>
                             
                         </ul>
                     </div>
