@@ -65,61 +65,40 @@
           
             <div class="live-preview ">
                
-                    <div class="col-md-12">
-                        <label for="input_types" class="form-label">Input Type</label>
-                        <select class="form-select" name="input_types[]" id="input_types" aria-label="Floating label select example">
-                            <option value="text">Input Field</option>
-                            <option value="textarea">Textarea Field</option>
-                            
-                          </select>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="input_types" class="form-label">Input Type</label>
+                            <select class="form-select" name="input_types[]" id="input_types" aria-label="Floating label select example">
+                                <option value="text">Input Field</option>
+                                <option value="textarea">Textarea Field</option>
+                        
+                              </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="input_names" class="form-label">Input Name</label>
+                            <input type="text" name="input_names[]" onchange="generateInputNames(true)"
+                            placeholder="Type input name" class="form-control"
+                            required>
+                        
+                        </div>
+                        <div class="col-md-4">
+                            <label for="input_label" class="form-label">Input Label</label>
+                            <input type="text" name="input_labels[]"
+                            placeholder="Type input label" class="form-control"
+                            required>
+                        
+                        </div>
                     </div>
-                    <div class="col-md-12">
-                        <label for="input_names" class="form-label">Input Name</label>
-                        <input type="text" name="input_names[]" onchange="generateInputNames(true)"
-                        placeholder="Type input name" class="form-control"
-                        required>
-                     
-                    </div>
-                    <div class="col-md-12">
-                        <label for="input_label" class="form-label">Input Label</label>
-                        <input type="text" name="input_labels[]"
-                        placeholder="Type input label" class="form-control"
-                        required>
-                     
-                    </div>
-                    <button type="button" class="btn btn-link px-0 fw-medium" data-toggle="add-more"
-                    data-content='
-                    <div class="col-md-12">
-                        <label for="input_types" class="form-label">Input Type</label>
-                        <select class="form-select" name="input_types[]" id="input_types" aria-label="Floating label select example">
-                            <option value="text">Input Field</option>
-                            <option value="textarea">Textarea Field</option>
-                            
-                          </select>
-                    </div>
-                    <div class="col-md-12">
-                        <label for="input_names" class="form-label">Input Name</label>
-                        <input type="text" name="input_names[]" onchange="generateInputNames(true)"
-                        placeholder="Type input name" class="form-control"
-                        required>
-                     
-                    </div>
-                    <div class="col-md-12">
-                        <label for="input_label" class="form-label">Input Label</label>
-                        <input type="text" name="input_labels[]"
-                        placeholder="Type input label" class="form-control"
-                        required>
-                     
-                    </div>'
-                    data-target=".custom-input-informations">
-                    <div class="d-flex align-items-center"><i data-feather="plus"></i>
-                        <span>Add More</span>
-                    </div>
-                </button>
+                    <button id="inputrow" type="button" class="btn btn-link px-0 fw-medium" onclick="addMoreInputs()">
+                        <div class="d-flex align-items-center"><i data-feather="plus"></i>
+                            <span>Add More</span>
+                        </div>
+                    </button>
                     
-                  
-                   
-               
+                    <div class="custom-input-informations">
+                        <!-- Additional input fields will be appended here -->
+                    </div>
+     
             </div>
           
         </div>
@@ -137,13 +116,13 @@
         <div class="card-body">
           
             <div class="live-preview">
-               
+                <label for="custom_prompt" class="form-label">Custom Prompt</label>
                     <div class="col-md-12">
                         <textarea class="form-control" id="VertimeassageInput" rows="3" placeholder="Enter your message"></textarea>
                     </div>
               
             </div>
-            
+ 
         </div>
     </div>
 
@@ -156,6 +135,50 @@
 </form>
 
 </div> 
+
+<script>
+    function addMoreInputs() {
+        var additionalInputs = `
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="input_types" class="form-label">Input Type</label>
+                    <select class="form-select" name="input_types[]" id="input_types" aria-label="Floating label select example">
+                        <option value="text">Input Field</option>
+                        <option value="textarea">Textarea Field</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="input_names" class="form-label">Input Name</label>
+                    <input type="text" name="input_names[]" onchange="generateInputNames(true)" placeholder="Type input name" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="input_label" class="form-label">Input Label</label>
+                    <input type="text" name="input_labels[]" placeholder="Type input label" class="form-control" required>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-link px-0 fw-medium remove-row" onclick="removeRow(this)">
+                        <div class="d-flex align-items-center">
+                            <i data-feather="minus"></i>
+                            <span>Remove</span>
+                        </div>
+                    </button>
+                </div>
+            </div>`;
+
+        // Append the additional inputs to the target container
+        document.querySelector('.custom-input-informations').insertAdjacentHTML('beforeend', additionalInputs);
+
+        // Move the "Add More" button to the end
+        document.getElementById('inputRow').appendChild(document.getElementById('inputrow'));
+    }
+
+    function removeRow(button) {
+        // Find the parent row and remove it
+        var row = button.closest('.row');
+        row.remove();
+    }
+</script>
+
 
 
 @endsection
