@@ -76,9 +76,8 @@
                         </div>
                         <div class="col-md-4">
                             <label for="input_names" class="form-label">Input Name</label>
-                            <input type="text" name="input_names[]" onchange="generateInputNames(true)"
-                            placeholder="Type input name" class="form-control"
-                            required>
+                            <input type="text" name="input_names[]" placeholder="Type input name" onchange="generateInputNames(true)" class="form-control" required>
+
                         
                         </div>
                         <div class="col-md-4">
@@ -89,7 +88,7 @@
                         
                         </div>
                     </div>
-                    <button id="inputrow" type="button" class="btn btn-link px-0 fw-medium" onclick="addMoreInputs()">
+                    <button id="inputRow" type="button" class="btn btn-link px-0 fw-medium" onclick="addMoreInputs()">
                         <div class="d-flex align-items-center"><i data-feather="plus"></i>
                             <span>Add More</span>
                         </div>
@@ -110,15 +109,23 @@
     <div class="card">
         <div class="card-header align-items-center d-flex">
             <h4 class="card-title mb-0 flex-grow-1">Prompt Information</h4>
-           
+
+            <div class="mb-4 hint d-none">
+                <label class="form-label">Input Variables</label>
+                <div class="mb-1 input_names_prompts">
+                </div>
+                <small>*Click on variable to set the user input of it in your prompts</small>
+            </div>
+    
         </div><!-- end card header -->
 
+       
         <div class="card-body">
           
             <div class="live-preview">
                 <label for="custom_prompt" class="form-label">Custom Prompt</label>
                     <div class="col-md-12">
-                        <textarea class="form-control" id="VertimeassageInput" rows="3" placeholder="Enter your message"></textarea>
+                        <textarea class="form-control" name="prompt" id="VertimeassageInput" rows="3" placeholder="Enter your message"></textarea>
                     </div>
               
             </div>
@@ -135,6 +142,8 @@
 </form>
 
 </div> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
     function addMoreInputs() {
@@ -173,11 +182,54 @@
     }
 
     function removeRow(button) {
-        // Find the parent row and remove it
-        var row = button.closest('.row');
-        row.remove();
+    // Find the parent row and remove it
+    var row = $(button).closest('.row');
+    row.remove();
+}
+
+
+
+    // TEST
+    function generateInputNames() {
+    // Clear previous content
+    $('.input_names_prompts').empty();
+    
+    // Loop through each input name and append it to the display div
+    $('input[name="input_names[]"]').each(function() {
+        var inputName = $(this).val();
+        if (inputName.trim() !== "") {
+            var span = $('<span class="badge bg-soft-primary cursor-pointer me-2"></span>');
+            span.text(inputName);
+            span.click(function() {
+                appendToPrompt(inputName);
+            });
+            $('.input_names_prompts').append(span);
+        }
+    });
+    
+    // Show the hint if there are input names, hide it otherwise
+    var hintDiv = $('.hint');
+    if ($('.input_names_prompts').children().length > 0) {
+        hintDiv.removeClass('d-none');
+    } else {
+        hintDiv.addClass('d-none');
     }
-</script>
+}
+
+function appendToPrompt(inputName) {
+    var promptTextarea = $('#VertimeassageInput');
+    var promptText = promptTextarea.val().trim();
+    if (promptText !== "") {
+        promptText += " {" + inputName + "}";
+    } else {
+        promptText = "{" + inputName + "}";
+    }
+    promptTextarea.val(promptText);
+}
+
+
+
+   </script>
 
 
 
