@@ -13,7 +13,18 @@ return new class extends Migration
     {
         Schema::create('custom_templates', function (Blueprint $table) {
             $table->id();
+            $table->string('template_name');
+            $table->string('slug');
+            $table->string('icon')->nullable();
+            $table->unsignedBigInteger('category_id');
+            $table->text('description')->nullable();
+            $table->json('input_types');
+            $table->json('input_names');
+            $table->json('input_labels');
+            $table->bigInteger('total_word_generated');
+            $table->text('prompt')->nullable();
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('custom_template_categories')->onDelete('cascade');
         });
     }
 

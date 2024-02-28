@@ -147,10 +147,8 @@ function addMoreInputs() {
 
     // Append the additional inputs to the target container
     document.querySelector('.custom-input-informations').insertAdjacentHTML('beforeend', additionalInputs);
-
-    // Move the "Add More" button to the end
-    document.querySelector('.custom-input-informations').appendChild(document.getElementById('inputRow'));
 }
+
 
 function removeRow(button) {
     // Find the parent row and remove it
