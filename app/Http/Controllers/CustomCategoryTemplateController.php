@@ -15,7 +15,7 @@ class CustomCategoryTemplateController extends Controller
 
     public function CustomCategoryTemplateStore (Request $request){
 
-
+dd($request);
         $customTemplateCategory = CustomTemplateCategory::insertGetId([
             
           'category_name' => $request->category_name,
