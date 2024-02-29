@@ -11,6 +11,8 @@
 @endcomponent
 
 <div class="col-xxl-6">
+    <form method="POST" action="{{route('custom.template.store')}}" class="row g-3">
+        @csrf
     <div class="card">
         <div class="card-header align-items-center d-flex">
             <h4 class="card-title mb-0 flex-grow-1">Basic Information</h4>
@@ -18,8 +20,7 @@
 
         <div class="card-body">
             <div class="live-preview">
-                <form method="POST" action="{{route('custom.template.store')}}" class="row g-3">
-                    @csrf
+                
                     <div class="col-md-12">
                         <label for="template_name" class="form-label">Template Name</label>
                         <input type="text" name="template_name" class="form-control" id="template_name" placeholder="Enter Template Name">
@@ -110,10 +111,9 @@
             <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Save">
         </div>
     </div>
-</div>
 </form>
-
 </div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
