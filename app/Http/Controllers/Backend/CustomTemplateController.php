@@ -16,16 +16,31 @@ class CustomTemplateController extends Controller
         return view('backend.custom_template.template_add', compact('categories'));
     }
 
+    public function CustomTemplateManage(){
+        $templates = CustomTemplate::latest()->get();
+        return view('backend.custom_template.template_manage', compact('templates'));
+    }
+
+    public function CustomTemplateView($id){
+        $customTemplate = CustomTemplate::findOrFail($id);
+
+    // Convert JSON strings to arrays
+    $inputTypes = json_decode($customTemplate->input_types, true);
+    $inputNames = json_decode($customTemplate->input_names, true);
+
+    return view('backend.custom_template.template_view', compact('customTemplate', 'inputTypes', 'inputNames'));
+      
+    }
+
+
 
     public function CustomTemplateStore (Request $request){
-
-        dd($request);
 
         // Validate the incoming request
         $validatedData = $request->validate([
             'template_name' => 'required|string',
             'icon' => 'nullable|string',
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => 'required|exists:custom_template_categories,id',
             'description' => 'nullable|string',
             'input_types' => 'required|array',
             'input_names' => 'required|array',
@@ -45,7 +60,7 @@ class CustomTemplateController extends Controller
         $templateInput->input_names = json_encode($validatedData['input_names']);
         $templateInput->input_labels = json_encode($validatedData['input_labels']);
         $templateInput->prompt = $validatedData['prompt'];
-        $templateInput->total_words_generated = '0';
+        $templateInput->total_word_generated = '0';
 
         // Save the TemplateInput instance
         $templateInput->save();

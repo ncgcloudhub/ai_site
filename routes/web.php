@@ -125,3 +125,7 @@ Route::post('/custom/category/store', [CustomCategoryTemplateController::class, 
 Route::get('/custom/template/add', [CustomTemplateController::class, 'CustomTemplateAdd'])->name('custom.template.add');
 
 Route::post('/custom/template/store', [CustomTemplateController::class, 'CustomTemplateStore'])->name('custom.template.store');
+
+Route::get('/custom/template/manage', [CustomTemplateController::class, 'CustomTemplateManage'])->name('custom.template.manage');
+
+Route::get('/custom/template/view/{id}', [CustomTemplateController::class, 'CustomTemplateView'])->name('custom.template.view');

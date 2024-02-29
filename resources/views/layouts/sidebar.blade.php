@@ -164,6 +164,9 @@
                                     <li class="nav-item">
                                         <a href="{{route('custom.template.add')}}" class="nav-link" >All Template</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('custom.template.manage')}}" class="nav-link" >Manage Template</a>
+                                    </li>
                                    
                                 </ul>
                             </div>
