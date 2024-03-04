@@ -1,158 +1,277 @@
 @extends('layouts.master')
-@section('title') @lang('translation.Listjs') @endsection
+@section('title') @lang('translation.orders') @endsection
 @section('content')
-    @component('components.breadcrumb')
-        @slot('li_1') Tables @endslot
-        @slot('title') Listjs @endslot
-    @endcomponent
+@component('components.breadcrumb')
+@slot('li_1') Ecommerce @endslot
+@slot('title') Orders @endslot
+@endcomponent
 
-    <style>
-        .icc:hover {
-   
-    transition: transform 0.3s ease; /* Example: Add a smooth transition */
-    cursor: pointer; /* Example: Change cursor to pointer on hover */
-    background-color: #d1d8ff; /* Light purple background color on hover */
-}
-
-    </style>
 <div class="row">
-    @foreach ($templates as $item)
-    <div class="col-xl-2 col-md-4">
-        <!-- card -->
-        <div class="card card-animate icc">
-            <div class="card-body">
-                <div class="avatar-sm flex-shrink-0">
-                    <span class="avatar-title bg-soft-primary rounded fs-3">
-                        <i class="bx bx-wallet text-primary"></i>
-                    </span>
-                </div>
-               
-                <div>
-                    <h4 class="fs-22 fw-semibold ff-secondary mb-4 mt-1">{{$item->template_name}}</h4>
-                   
-                </div>
-
-                <div class="d-flex align-items-end justify-content-between mt-4">
-                    <div>
-                        <p>Details</p>
-                        <a href="" class="text-decoration-underline">Withdraw money</a>
+    <div class="col-lg-12">
+        <div class="card" id="orderList">
+            <div class="card-header  border-0">
+                <div class="d-flex align-items-center">
+                    <h5 class="card-title mb-0 flex-grow-1">Order History</h5>
+                    <div class="flex-shrink-0">
+                        <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal"
+                            id="create-btn" data-bs-target="#showModal"><i
+                                class="ri-add-line align-bottom me-1"></i> Create
+                            Order</button>
+                        <button type="button" class="btn btn-info"><i
+                                class="ri-file-download-line align-bottom me-1"></i> Import</button>
                     </div>
-                    <div class="d-flex gap-2"> <!-- Add this container with the gap-2 class -->
-                        <div class="avatar-xxs flex-shrink-0">
-                            <span class="rounded fs-3">
-                                <i class="bx bx-heart text-primary"></i>
-                            </span>
-                        </div>
-                        <div class="avatar-xxs flex-shrink-0">
-                            <span class="rounded fs-3">
-                                <i class="bx bx-edit text-primary"></i>
-                            </span>
-                        </div>
-                        <div class="avatar-xxs flex-shrink-0">
-                            <span class="rounded fs-3">
-                                <i class="bx bxs-trash text-primary"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div><!-- end card body -->
-                
-        </div><!-- end card -->
-    </div><!-- end col -->
-    </div><!-- end col -->
-    @endforeach
-</div>
-
-    <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-light p-3">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        id="close-modal"></button>
                 </div>
+            </div>
+            <div class="card-body border border-dashed border-end-0 border-start-0">
                 <form>
-                    <div class="modal-body">
-
-                        <div class="mb-3" id="modal-id" style="display: none;">
-                            <label for="id-field" class="form-label">ID</label>
-                            <input type="text" id="id-field" class="form-control" placeholder="ID" readonly />
+                    <div class="row g-3">
+                        <div class="col-xxl-5 col-sm-6">
+                            <div class="search-box">
+                                <input type="text" class="form-control search"
+                                    placeholder="Search for order ID, customer, order status or something...">
+                                <i class="ri-search-line search-icon"></i>
+                            </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="customername-field" class="form-label">Customer Name</label>
-                            <input type="text" id="customername-field" class="form-control" placeholder="Enter Name" required />
+                        <!--end col-->
+                        <div class="col-xxl-2 col-sm-6">
+                            <div>
+                                <input type="text" class="form-control" data-provider="flatpickr"
+                                    data-date-format="d M, Y" data-range-date="true"
+                                    id="demo-datepicker" placeholder="Select date">
+                            </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="email-field" class="form-label">Email</label>
-                            <input type="email" id="email-field" class="form-control" placeholder="Enter Email" required />
+                        <!--end col-->
+                        <div class="col-xxl-2 col-sm-4">
+                            <div>
+                                <select class="form-control" data-choices data-choices-search-false
+                                    name="choices-single-default" id="idStatus">
+                                    <option value="">Status</option>
+                                    <option value="all" selected>All</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Inprogress">Inprogress</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                    <option value="Pickups">Pickups</option>
+                                    <option value="Returns">Returns</option>
+                                    <option value="Delivered">Delivered</option>
+                                </select>
+                            </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="phone-field" class="form-label">Phone</label>
-                            <input type="text" id="phone-field" class="form-control"  placeholder="Enter Phone no." required />
+                        <!--end col-->
+                        <div class="col-xxl-2 col-sm-4">
+                            <div>
+                                <select class="form-control" data-choices data-choices-search-false
+                                    name="choices-single-default" id="idPayment">
+                                    <option value="">Select Payment</option>
+                                    <option value="all" selected>All</option>
+                                    <option value="Mastercard">Mastercard</option>
+                                    <option value="Paypal">Paypal</option>
+                                    <option value="Visa">Visa</option>
+                                    <option value="COD">COD</option>
+                                </select>
+                            </div>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="date-field" class="form-label">Joining Date</label>
-                            <input type="text" id="date-field" class="form-control" placeholder="Select Date" required />
+                        <!--end col-->
+                        <div class="col-xxl-1 col-sm-4">
+                            <div>
+                                <button type="button" class="btn btn-primary w-100"
+                                    onclick="SearchData();"> <i
+                                        class="ri-equalizer-fill me-1 align-bottom"></i>
+                                    Filters
+                                </button>
+                            </div>
                         </div>
-
-                        <div>
-                            <label for="status-field" class="form-label">Status</label>
-                            <select class="form-control" data-trigger name="status-field" id="status-field" >
-                                <option value="">Status</option>
-                                <option value="Active">Active</option>
-                                <option value="Block">Block</option>
-                            </select>
-                        </div>
+                        <!--end col-->
                     </div>
-                    <div class="modal-footer">
-                        <div class="hstack gap-2 justify-content-end">
-                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success" id="add-btn">Add Customer</button>
-                            <button type="button" class="btn btn-success" id="edit-btn">Update</button>
-                        </div>
-                    </div>
+                    <!--end row-->
                 </form>
             </div>
-        </div>
-    </div>
+            <div class="card-body pt-0">
+                <div>
+                    <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active All py-3" data-bs-toggle="tab" id="All"
+                                href="#home1" role="tab" aria-selected="true">
+                                <i class="ri-store-2-fill me-1 align-bottom"></i> All Orders
+                            </a>
+                        </li>
+                        @foreach ($customtemplatecategories as $item)
+                            <li class="nav-item">
+                                <a class="nav-link py-3 {{$item->category_name}}" data-bs-toggle="tab" id="{{$item->id}}"
+                                    href="#{{$item->id}}" role="tab" aria-selected="false">
+                                    <i class="ri-checkbox-circle-line me-1 align-bottom"></i>{{$item->category_name}}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
 
-    <!-- Modal -->
-    <div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mt-2 text-center">
-                        <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
-                            colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
-                        <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                            <h4>Are you Sure ?</h4>
-                            <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Record ?</p>
+
+
+
+                    <div class="table-responsive table-card mb-1">
+                        <table class="table table-nowrap align-middle" id="orderTable">
+                            <thead class="text-muted table-light">
+                                <tr class="text-uppercase">
+                                    <th scope="col" style="width: 25px;">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                id="checkAll" value="option">
+                                        </div>
+                                    </th>
+                                    <th class="sort" data-sort="id">Order ID</th>
+                                    <th class="sort" data-sort="customer_name">Customer</th>
+                                    <th class="sort" data-sort="product_name">Product</th>
+                                    <th class="sort" data-sort="date">Order Date</th>
+                                    <th class="sort" data-sort="amount">Amount</th>
+                                    <th class="sort" data-sort="payment">Payment Method</th>
+                                    <th class="sort" data-sort="status">Delivery Status</th>
+                                    <th class="sort" data-sort="city">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="list form-check-all">
+                            @foreach ($templates as $item)
+                             
+                                <tr class="template-row" data-category="{{$item->category_id}}">
+                                    <th scope="row">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="text"
+                                                name="checkAll" value="{{$item->category_id}}">
+                                        </div>
+                                    </th>
+                                    <td class="id"><a href="apps-ecommerce-order-details"
+                                            class="fw-medium link-primary">#VZ2101</a></td>
+                                    <td class="customer_name">Frank Hook</td>
+                                    <td class="product_name">Puma Tshirt</td>
+                                    <td class="date">20 Dec, 2021, <small class="text-muted">02:21
+                                            AM</small></td>
+                                    <td class="amount">$654</td>
+                                    <td class="payment">Mastercard</td>
+                                    <td class="status"><span
+                                            class="badge badge-soft-warning text-uppercase">Pending</span>
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline hstack gap-2 mb-0">
+                                            <li class="list-inline-item" data-bs-toggle="tooltip"
+                                                data-bs-trigger="hover" data-bs-placement="top"
+                                                title="View">
+                                                <a href="apps-ecommerce-order-details"
+                                                    class="text-primary d-inline-block">
+                                                    <i class="ri-eye-fill fs-16"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item edit"
+                                                data-bs-toggle="tooltip" data-bs-trigger="hover"
+                                                data-bs-placement="top" title="Edit">
+                                                <a href="#showModal" data-bs-toggle="modal"
+                                                    class="text-primary d-inline-block edit-item-btn">
+                                                    <i class="ri-pencil-fill fs-16"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item" data-bs-toggle="tooltip"
+                                                data-bs-trigger="hover" data-bs-placement="top"
+                                                title="Remove">
+                                                <a class="text-danger d-inline-block remove-item-btn"
+                                                    data-bs-toggle="modal" href="#deleteOrder">
+                                                    <i class="ri-delete-bin-5-fill fs-16"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="noresult" style="display: none">
+                            <div class="text-center">
+                                <lord-icon src="https://cdn.lordicon.com/msoeawqm.json"
+                                    trigger="loop" colors="primary:#405189,secondary:#0ab39c"
+                                    style="width:75px;height:75px">
+                                </lord-icon>
+                                <h5 class="mt-2">Sorry! No Result Found</h5>
+                                <p class="text-muted">We've searched more than 150+ Orders We did
+                                    not find any
+                                    orders for you search.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                        <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn w-sm btn-danger " id="delete-record">Yes, Delete It!</button>
+                    <div class="d-flex justify-content-end">
+                        <div class="pagination-wrap hstack gap-2">
+                            <a class="page-item pagination-prev disabled" href="#">
+                                Previous
+                            </a>
+                            <ul class="pagination listjs-pagination mb-0"></ul>
+                            <a class="page-item pagination-next" href="#">
+                                Next
+                            </a>
+                        </div>
                     </div>
                 </div>
+                <!-- Modal -->
+                <div class="modal fade flip" id="deleteOrder" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body p-5 text-center">
+                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json"
+                                    trigger="loop" colors="primary:#405189,secondary:#f06548"
+                                    style="width:90px;height:90px"></lord-icon>
+                                <div class="mt-4 text-center">
+                                    <h4>You are about to delete a order ?</h4>
+                                    <p class="text-muted fs-15 mb-4">Deleting your order will remove
+                                        all of
+                                        your information from our database.</p>
+                                    <div class="hstack gap-2 justify-content-center remove">
+                                        <button
+                                            class="btn btn-link link-success fw-medium text-decoration-none"
+                                            data-bs-dismiss="modal"><i
+                                                class="ri-close-line me-1 align-middle"></i>
+                                            Close</button>
+                                        <button class="btn btn-danger" id="delete-record">Yes,
+                                            Delete It</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end modal -->
             </div>
         </div>
+
     </div>
-    <!--end modal -->
+    <!--end col-->
+</div>
+<!--end row-->
+
 @endsection
 @section('script')
-    <script src="{{ URL::asset('assets/libs/prismjs/prismjs.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/list.js/list.js.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/libs/list.pagination.js/list.pagination.js.min.js') }}"></script>
+<script src="assets/libs/list.js/list.js.min.js"></script>
+        <script src="assets/libs/list.pagination.js/list.pagination.js.min.js"></script>
 
-    <!-- listjs init -->
-    <script src="{{ URL::asset('assets/js/pages/listjs.init.js') }}"></script>
+        <!--ecommerce-customer init js -->
+        <script src="assets/js/pages/ecommerce-order.init.js"></script>
 
-    <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+<script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.nav-link').on('click', function() {
+
+            // Remove 'active' class from all nav links
+        $('.nav-link').removeClass('active');
+        
+        // Add 'active' class to the clicked nav link
+        $(this).addClass('active');
+        
+            var category = $(this).attr('id');
+            if (category === 'All') {
+            $('.template-row').show(); // Show all templates
+        } else {
+            $('.template-row').hide(); // Hide all templates initially
+            $('.template-row[data-category="' + category + '"]').show(); // Show templates that match the selected category
+        }
+        });
+    });
+</script>
+
 @endsection

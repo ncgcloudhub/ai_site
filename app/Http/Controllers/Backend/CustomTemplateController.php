@@ -18,7 +18,8 @@ class CustomTemplateController extends Controller
 
     public function CustomTemplateManage(){
         $templates = CustomTemplate::latest()->get();
-        return view('backend.custom_template.template_manage', compact('templates'));
+        $customtemplatecategories = CustomTemplateCategory::latest()->get();
+        return view('backend.custom_template.template_manage', compact('templates','customtemplatecategories'));
     }
 
     public function CustomTemplateView($id) {
