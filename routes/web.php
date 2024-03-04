@@ -116,7 +116,7 @@ Route::get('/write', function () {
 
 Route::post('/write/generate', [OpenAIController::class, 'openaigenerate'])->name('openai.generate');
 
-Route::get('/blog/generate', [OpenAIController::class, 'BlogGenerate'])->name('blog.generate');
+// Route::get('/blog/generate', [OpenAIController::class, 'BlogGenerate'])->name('blog.generate');
 
 Route::get('/custom/category/add', [CustomCategoryTemplateController::class, 'CustomCategoryTemplateAdd'])->name('custom.category.add');
 

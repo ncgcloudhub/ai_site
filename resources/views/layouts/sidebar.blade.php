@@ -177,11 +177,11 @@
                 </li>
 
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('blog.generate')}}">
                         <i class="las la-flask"></i> <span >Writer</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="menu-title"><i class="ri-more-fill"></i> <span >AI Tools</span></li>
                

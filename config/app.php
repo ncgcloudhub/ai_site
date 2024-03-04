@@ -126,6 +126,10 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+
+    'openai_api_key' => env('OPENAI_API_KEY', 'gggggg'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver

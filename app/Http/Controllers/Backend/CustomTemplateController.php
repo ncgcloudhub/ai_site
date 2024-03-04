@@ -21,15 +21,18 @@ class CustomTemplateController extends Controller
         return view('backend.custom_template.template_manage', compact('templates'));
     }
 
-    public function CustomTemplateView($id){
+    public function CustomTemplateView($id) {
         $customTemplate = CustomTemplate::findOrFail($id);
-
-    // Convert JSON strings to arrays
-    $inputTypes = json_decode($customTemplate->input_types, true);
-    $inputNames = json_decode($customTemplate->input_names, true);
-
-    return view('backend.custom_template.template_view', compact('customTemplate', 'inputTypes', 'inputNames'));
-      
+    
+        // Convert JSON strings to arrays
+        $inputTypes = json_decode($customTemplate->input_types, true);
+        $inputNames = json_decode($customTemplate->input_names, true);
+        $inputLabels = json_decode($customTemplate->input_labels, true);
+    
+        $content = '';
+        
+    
+        return view('backend.custom_template.template_view', compact('customTemplate', 'inputTypes', 'inputNames', 'inputLabels', 'content'));
     }
 
 

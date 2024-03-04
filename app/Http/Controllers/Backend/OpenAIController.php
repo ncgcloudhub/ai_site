@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\OpenAISettings;
+use App\Models\CustomTemplate;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 
@@ -45,17 +46,20 @@ class OpenAIController extends Controller
 	{
 
         $setting = OpenAISettings::find(1);
+		
 
 		if ($input->title == null) {
 			return;
 		}
 
 		$title = $input->title;
-		$main_points = $input->main_points;
+		// $main_points = $input->main_points;
 		$tone = 'professional';
 		$max_tokens = 100;
 		
-		$client = OpenAI::client('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');
+		$apiKey = config('app.openai_api_key');
+		$client = OpenAI::client($apiKey);
+		
 
 		if($input->max_result_length != NULL){
 			$max_tokens = intval($input->max_result_length); 
@@ -66,7 +70,23 @@ class OpenAIController extends Controller
 		}
 		
 
-		$prompt = 'Write article about ' . $title . ' and it should include main points such as ' . $main_points . 'and the tone should be ' . $tone;
+		$prompt =  $input->prompt;
+
+		foreach ($input->all() as $name => $inpVal) {
+            if ($name != '_token' && $name != 'project_id' && $name != 'max_tokens') {
+                $name = '{' . $name . '}';
+                if (!is_null($inpVal) && !is_null($name)) {
+                    $prompt = str_replace($name, $inpVal, $prompt);
+                } else {
+                    $data = [
+                        'status'  => 400,
+                        'success' => false,
+                        'message' => localize('Your input does not match with the custom prompt'),
+                    ];
+                    return $data;
+                }
+            }
+        } 
        
 		$result = $client->completions()->create([
 			"model" => $setting->openaimodel,
@@ -81,7 +101,7 @@ class OpenAIController extends Controller
 		$content = trim($result['choices'][0]['text']);
 	    // dd($content);
 	
-		return view('backend.openai.blog_generate', compact('title', 'content'));
+		return view('backend.custom_template.template_view', compact('title', 'content'));
 	}
 
 	public function BlogGenerate(){
