@@ -139,7 +139,7 @@
                                     </th>
                                     <td class="id"><a href="apps-ecommerce-order-details"
                                             class="fw-medium link-primary">#VZ2101</a></td>
-                                    <td class="customer_name">Frank Hook</td>
+                                    <td class="customer_name"><a href="{{route('custom.template.view', $item->id)}}">{{$item->template_name}}</a></td>
                                     <td class="product_name">Puma Tshirt</td>
                                     <td class="date">20 Dec, 2021, <small class="text-muted">02:21
                                             AM</small></td>

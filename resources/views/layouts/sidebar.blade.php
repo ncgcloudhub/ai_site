@@ -176,6 +176,12 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('openai.settings.view')}}">
+                        <i class="las la-flask"></i> <span >AI Chat</span>
+                    </a>
+                </li>
+
 
                 {{-- <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('blog.generate')}}">
