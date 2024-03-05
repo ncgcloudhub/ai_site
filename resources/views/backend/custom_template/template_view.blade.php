@@ -4,6 +4,8 @@
 <link href="/assets/libs/jsvectormap/jsvectormap.min.css" rel="stylesheet" type="text/css" />
 <link href="/assets/libs/swiper/swiper.min.css" rel="stylesheet" type="text/css" />
 <link href="/assets/libs/quill/quill.min.css" rel="stylesheet" type="text/css" />
+<!-- nouisliderribute css -->
+<link href="/assets/libs/nouislider/nouislider.min.css" rel="stylesheet" type="text/css">
 @endsection
 @section('content')
 @component('components.breadcrumb')
@@ -91,6 +93,40 @@
                     
                     </div>
                 </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label for="max_result_length" class="form-label">Temperature</label>
+                        <input type="number" name="temperature" class="form-control" id="temperature" placeholder="Enter Max Result Length">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="max_result_length" class="form-label">Top P</label>
+                        <input type="number" name="top_p" class="form-control" id="top_p" placeholder="Enter Max Result Length">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="max_result_length" class="form-label">Frequency Penalty</label>
+                        <input type="number" name="frequency_penalty" class="form-control" id="frequency_penalty" placeholder="Enter Max Result Length">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="max_result_length" class="form-label">Presence Penalty</label>
+                        <input type="number" name="presence_penalty" class="form-control" id="presence_penalty" placeholder="Enter Max Result Length">
+                    </div>
+                </div>
+
+                {{-- <div class="col-lg-9">
+                    <div class="d-inline-flex gap-2 mb-3">
+                        <select id="input-select" class="form-select form-select-sm w-xs shadow-none"><option value="-20">-20</option><option value="-19">-19</option><option value="-18">-18</option><option value="-17">-17</option><option value="-16">-16</option><option value="-15">-15</option><option value="-14">-14</option><option value="-13">-13</option><option value="-12">-12</option><option value="-11">-11</option><option value="-10">-10</option><option value="-9">-9</option><option value="-8">-8</option><option value="-7">-7</option><option value="-6">-6</option><option value="-5">-5</option><option value="-4">-4</option><option value="-3">-3</option><option value="-2">-2</option><option value="-1">-1</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option></select>
+                        <input type="number" class="form-control form-control-sm w-xs shadow-none" min="-20" max="40" step="1" id="input-number">
+                    </div>
+                    <div id="html5" class="noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr"><div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(50%, 0px) scale(0.333333, 1);"></div></div><div class="noUi-origin" style="transform: translate(-50%, 0px); z-index: 5;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="-20.0" aria-valuemax="30.0" aria-valuenow="10.0" aria-valuetext="10.00"><div class="noUi-touch-area"></div></div></div><div class="noUi-origin" style="transform: translate(-16.6667%, 0px); z-index: 4;"><div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="10.0" aria-valuemax="40.0" aria-valuenow="30.0" aria-valuetext="30.00"><div class="noUi-touch-area"></div></div></div></div></div>
+                    
+                </div> --}}
 
             </div>
         </div>
@@ -182,6 +218,12 @@
 </script>
 
 
+ <!-- nouisliderribute js -->
+ <script src="/assets/libs/nouislider/nouislider.min.js"></script>
+ <script src="/assets/libs/wnumb/wNumb.min.js"></script>
+ <!-- range slider init -->
+ <script src="/assets/js/pages/range-sliders.init.js"></script>
 
+ <script src="/assets/js/app.js"></script>
 
 @endsection
