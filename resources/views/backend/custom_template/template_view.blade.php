@@ -20,7 +20,7 @@
                 <div class="card-body">
                   
                     <div class="live-preview">
-                        <form  action="/write/generate" method="post" class="row g-3">
+                        <form id="generateForm"  action="/write/generate" method="post" class="row g-3">
                             @csrf
                             {{-- <input type="hidden" name="template_code" value="{{ $template->slug }}"> --}}
                             <div class="col-md-12">
@@ -122,7 +122,7 @@
         
                         <div class="card-body">
                             <div class="snow-editor" style="height: 300px;" readonly>
-                                {{ $content }}
+                                {{-- {{ $content }} --}}
         
                             </div> <!-- end Snow-editor-->
                         </div><!-- end card-body -->
@@ -151,4 +151,37 @@
 <!-- dashboard init -->
 <script src="{{ URL::asset('/assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+
+
+
+
+
+
+{{-- Submit Form Editor --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#generateForm').submit(function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function (response) {
+                    // Assuming 'content' is the key in your JSON response containing the generated content
+                    $('.snow-editor').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                    // Handle error if any
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
 @endsection

@@ -48,11 +48,11 @@ class OpenAIController extends Controller
         $setting = OpenAISettings::find(1);
 		
 
-		if ($input->title == null) {
-			return;
-		}
+		// if ($input->title == null) {
+		// 	return 10;
+		// }
 
-		$title = $input->title;
+		// $title = $input->title;
 		// $main_points = $input->main_points;
 		$tone = 'professional';
 		$max_tokens = 100;
@@ -99,9 +99,9 @@ class OpenAIController extends Controller
 		]);
 	
 		$content = trim($result['choices'][0]['text']);
-	    // dd($content);
-	
-		return view('backend.custom_template.template_view', compact('title', 'content'));
+
+		// return view('backend.custom_template.template_view', compact('title', 'content'));
+		return $content;
 	}
 
 	public function BlogGenerate(){

@@ -6,10 +6,17 @@
 @slot('title') Orders @endslot
 @endcomponent
 
+<style>
+   .template-card:hover {
+    transform: scale(.95);
+    transition: transform 0.3s ease;
+} 
+</style>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card" id="orderList">
-            <div class="card-header  border-0">
+            <div class="card-header border-0">
                 <div class="d-flex align-items-center">
                     <h5 class="card-title mb-0 flex-grow-1">Order History</h5>
                     <div class="flex-shrink-0">
@@ -104,82 +111,62 @@
                         @endforeach
                     </ul>
 
-
-
-
-                    <div class="table-responsive table-card mb-1">
-                        <table class="table table-nowrap align-middle" id="orderTable">
-                            <thead class="text-muted table-light">
-                                <tr class="text-uppercase">
-                                    <th scope="col" style="width: 25px;">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox"
-                                                id="checkAll" value="option">
-                                        </div>
-                                    </th>
-                                    <th class="sort" data-sort="id">Order ID</th>
-                                    <th class="sort" data-sort="customer_name">Customer</th>
-                                    <th class="sort" data-sort="product_name">Product</th>
-                                    <th class="sort" data-sort="date">Order Date</th>
-                                    <th class="sort" data-sort="amount">Amount</th>
-                                    <th class="sort" data-sort="payment">Payment Method</th>
-                                    <th class="sort" data-sort="status">Delivery Status</th>
-                                    <th class="sort" data-sort="city">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody class="list form-check-all">
+                    <div class="table-card mb-1">
+                        <div class="row template-row">
                             @foreach ($templates as $item)
-                             
-                                <tr class="template-row" data-category="{{$item->category_id}}">
-                                    <th scope="row">
+                           
+                            <div class="col-md-3 template-card" data-category="{{$item->category_id}}">
+                                
+                                <div class="card">
+                                    <div class="card-body">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="text"
-                                                name="checkAll" value="{{$item->category_id}}">
+                                            <input class="form-check-input" type="text" name="checkAll" value="{{$item->category_id}}">
                                         </div>
-                                    </th>
-                                    <td class="id"><a href="apps-ecommerce-order-details"
-                                            class="fw-medium link-primary">#VZ2101</a></td>
-                                    <td class="customer_name">Frank Hook</td>
-                                    <td class="product_name">Puma Tshirt</td>
-                                    <td class="date">20 Dec, 2021, <small class="text-muted">02:21
-                                            AM</small></td>
-                                    <td class="amount">$654</td>
-                                    <td class="payment">Mastercard</td>
-                                    <td class="status"><span
-                                            class="badge badge-soft-warning text-uppercase">Pending</span>
-                                    </td>
-                                    <td>
+                                        <h5 class="card-title">Order ID: <a href="{{ route('custom.template.view', ['id' => $item->id]) }}" class="fw-medium link-primary">{{$item->template_name}}</a></h5>
+                                        <p class="card-text customer_name">Customer: Frank Hook</p>
+                                        <p class="card-text product_name">Product: Puma Tshirt</p>
+                                        <p class="card-text date">Order Date: 20 Dec, 2021, <small class="text-muted">02:21 AM</small></p>
+                                        <p class="card-text amount">Amount: $654</p>
+                                        <p class="card-text payment">Payment Method: Mastercard</p>
+                                        <p class="card-text status"><span class="badge badge-soft-warning text-uppercase">Pending</span></p>
                                         <ul class="list-inline hstack gap-2 mb-0">
-                                            <li class="list-inline-item" data-bs-toggle="tooltip"
-                                                data-bs-trigger="hover" data-bs-placement="top"
-                                                title="View">
-                                                <a href="apps-ecommerce-order-details"
-                                                    class="text-primary d-inline-block">
+                                            <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
+                                                <a href="apps-ecommerce-order-details" class="text-primary d-inline-block">
                                                     <i class="ri-eye-fill fs-16"></i>
                                                 </a>
                                             </li>
-                                            <li class="list-inline-item edit"
-                                                data-bs-toggle="tooltip" data-bs-trigger="hover"
-                                                data-bs-placement="top" title="Edit">
-                                                <a href="#showModal" data-bs-toggle="modal"
-                                                    class="text-primary d-inline-block edit-item-btn">
+                                            <li class="list-inline-item edit" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Edit">
+                                                <a href="#showModal" data-bs-toggle="modal" class="text-primary d-inline-block edit-item-btn">
                                                     <i class="ri-pencil-fill fs-16"></i>
                                                 </a>
                                             </li>
-                                            <li class="list-inline-item" data-bs-toggle="tooltip"
-                                                data-bs-trigger="hover" data-bs-placement="top"
-                                                title="Remove">
-                                                <a class="text-danger d-inline-block remove-item-btn"
-                                                    data-bs-toggle="modal" href="#deleteOrder">
+                                            <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="Remove">
+                                                <a class="text-danger d-inline-block remove-item-btn" data-bs-toggle="modal" href="#deleteOrder">
                                                     <i class="ri-delete-bin-5-fill fs-16"></i>
                                                 </a>
                                             </li>
                                         </ul>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </div>
+                           
+                            </div>
+                            
                                 @endforeach
-                            </tbody>
-                        </table>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div class="noresult" style="display: none">
                             <div class="text-center">
                                 <lord-icon src="https://cdn.lordicon.com/msoeawqm.json"
@@ -265,10 +252,10 @@
         
             var category = $(this).attr('id');
             if (category === 'All') {
-            $('.template-row').show(); // Show all templates
+            $('.template-card').show(); // Show all templates
         } else {
-            $('.template-row').hide(); // Hide all templates initially
-            $('.template-row[data-category="' + category + '"]').show(); // Show templates that match the selected category
+            $('.template-card').hide(); // Hide all templates initially
+            $('.template-card[data-category="' + category + '"]').show(); // Show templates that match the selected category
         }
         });
     });
