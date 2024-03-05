@@ -4,8 +4,7 @@
 <link href="/assets/libs/jsvectormap/jsvectormap.min.css" rel="stylesheet" type="text/css" />
 <link href="/assets/libs/swiper/swiper.min.css" rel="stylesheet" type="text/css" />
 <link href="/assets/libs/quill/quill.min.css" rel="stylesheet" type="text/css" />
-<!-- nouisliderribute css -->
-<link href="/assets/libs/nouislider/nouislider.min.css" rel="stylesheet" type="text/css">
+
 @endsection
 @section('content')
 @component('components.breadcrumb')
@@ -69,7 +68,9 @@
             
                 <div class="col-md-12">
                     <label for="max_result_length" class="form-label">Max Result Length</label>
-                    <input type="number" name="max_result_length" class="form-control" id="max_result_length" placeholder="Enter Max Result Length">
+                    <input type="range" name="max_result_length" class="form-range" id="max_result_length" min="10" max="4000" step="10" value="100">
+                    <input type="number" name="max_result_length_value" class="form-control" id="max_result_length_value" min="10" max="4000" step="10" value="100">
+                    
                 </div>
                 
 
@@ -88,6 +89,9 @@
                         <select class="form-select" name="tone" id="tone" aria-label="Floating label select example">
                             <option disabled selected="">Enter Tone</option>
                             <option value="Professional">Professional</option>
+                            <option value="Friendly">Friendly</option>
+                            <option value="Relaxed">Relaxed</option>
+                            <option value="Casual">Casual</option>
                     
                           </select>
                     
@@ -98,35 +102,37 @@
 
                     <div class="col-md-6">
                         <label for="max_result_length" class="form-label">Temperature</label>
-                        <input type="number" name="temperature" class="form-control" id="temperature" placeholder="Enter Max Result Length">
+                        <input type="range" name="temperature" class="form-range" id="temperature" min="0" max="1" step="0.01" value="0.50">
+                        <input type="number" name="temperature_value" class="form-control" id="temperature_value" min="0" max="1" step="0.01" value="0.50">
+
                     </div>
 
                     <div class="col-md-6">
                         <label for="max_result_length" class="form-label">Top P</label>
-                        <input type="number" name="top_p" class="form-control" id="top_p" placeholder="Enter Max Result Length">
+                        <input type="range" name="top_p" class="form-range" id="top_p" min="0" max="1" step="0.01" value="0.50">
+                        <input type="number" name="top_p_value" class="form-control" id="top_p_value" min="0" max="1" step="0.01" value="0.50">
+                        
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <label for="max_result_length" class="form-label">Frequency Penalty</label>
-                        <input type="number" name="frequency_penalty" class="form-control" id="frequency_penalty" placeholder="Enter Max Result Length">
+                        <input type="range" name="frequency_penalty" class="form-range" id="frequency_penalty" min="0" max="2" step="0.01" value="1.00">
+                        <input type="number" name="frequency_penalty_value" class="form-control" id="frequency_penalty_value" min="0" max="2" step="0.01" value="1.00">
+
                     </div>
 
                     <div class="col-md-6">
                         <label for="max_result_length" class="form-label">Presence Penalty</label>
-                        <input type="number" name="presence_penalty" class="form-control" id="presence_penalty" placeholder="Enter Max Result Length">
+                        <input type="range" name="presence_penalty" class="form-range" id="presence_penalty" min="0" max="2" step="0.01" value="1.00">
+                        <input type="number" name="presence_penalty_value" class="form-control" id="presence_penalty_value" min="0" max="2" step="0.01" value="1.00">
+
+
+
                     </div>
                 </div>
 
-                {{-- <div class="col-lg-9">
-                    <div class="d-inline-flex gap-2 mb-3">
-                        <select id="input-select" class="form-select form-select-sm w-xs shadow-none"><option value="-20">-20</option><option value="-19">-19</option><option value="-18">-18</option><option value="-17">-17</option><option value="-16">-16</option><option value="-15">-15</option><option value="-14">-14</option><option value="-13">-13</option><option value="-12">-12</option><option value="-11">-11</option><option value="-10">-10</option><option value="-9">-9</option><option value="-8">-8</option><option value="-7">-7</option><option value="-6">-6</option><option value="-5">-5</option><option value="-4">-4</option><option value="-3">-3</option><option value="-2">-2</option><option value="-1">-1</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option></select>
-                        <input type="number" class="form-control form-control-sm w-xs shadow-none" min="-20" max="40" step="1" id="input-number">
-                    </div>
-                    <div id="html5" class="noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr"><div class="noUi-base"><div class="noUi-connects"><div class="noUi-connect" style="transform: translate(50%, 0px) scale(0.333333, 1);"></div></div><div class="noUi-origin" style="transform: translate(-50%, 0px); z-index: 5;"><div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="-20.0" aria-valuemax="30.0" aria-valuenow="10.0" aria-valuetext="10.00"><div class="noUi-touch-area"></div></div></div><div class="noUi-origin" style="transform: translate(-16.6667%, 0px); z-index: 4;"><div class="noUi-handle noUi-handle-upper" data-handle="1" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="10.0" aria-valuemax="40.0" aria-valuenow="30.0" aria-valuetext="30.00"><div class="noUi-touch-area"></div></div></div></div></div>
-                    
-                </div> --}}
 
             </div>
         </div>
@@ -195,6 +201,98 @@
 
 {{-- Submit Form Editor --}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        // Update number input when the range slider changes
+        $('#max_result_length').on('input', function() {
+            var value = parseFloat($(this).val()).toFixed(0); // Round to nearest integer
+            $('#max_result_length_value').val(value);
+        });
+    
+        // Update range slider when the number input changes
+        $('#max_result_length_value').on('input', function() {
+            var value = parseFloat($(this).val()).toFixed(0); // Round to nearest integer
+            if (!isNaN(value)) {
+                $('#max_result_length').val(value);
+            }
+        });
+    });
+    </script>
+
+<script>
+    $(document).ready(function() {
+        // Update number input when the range slider changes
+        $('#presence_penalty').on('input', function() {
+            var value = parseFloat($(this).val()).toFixed(2);
+            $('#presence_penalty_value').val(value);
+        });
+    
+        // Update range slider when the number input changes
+        $('#presence_penalty_value').on('input', function() {
+            var value = parseFloat($(this).val()).toFixed(2);
+            if (!isNaN(value)) {
+                $('#presence_penalty').val(value);
+            }
+        });
+    });
+    </script>
+
+<script>
+    $(document).ready(function() {
+        // Update number input when the range slider changes
+        $('#frequency_penalty').on('input', function() {
+            var value = parseFloat($(this).val()).toFixed(2);
+            $('#frequency_penalty_value').val(value);
+        });
+    
+        // Update range slider when the number input changes
+        $('#frequency_penalty_value').on('input', function() {
+            var value = parseFloat($(this).val()).toFixed(2);
+            if (!isNaN(value)) {
+                $('#frequency_penalty').val(value);
+            }
+        });
+    });
+    </script>
+
+<script>
+    $(document).ready(function() {
+        // Update number input when the range slider changes
+        $('#top_p').on('input', function() {
+            var value = parseFloat($(this).val()).toFixed(2);
+            $('#top_p_value').val(value);
+        });
+    
+        // Update range slider when the number input changes
+        $('#top_p_value').on('input', function() {
+            var value = parseFloat($(this).val()).toFixed(2);
+            if (!isNaN(value)) {
+                $('#top_p').val(value);
+            }
+        });
+    });
+    </script>
+
+<script>
+    $(document).ready(function() {
+        // Update number input when the range slider changes
+        $('#temperature').on('input', function() {
+            var value = parseFloat($(this).val()).toFixed(2);
+            $('#temperature_value').val(value);
+        });
+    
+        // Update range slider when the number input changes
+        $('#temperature_value').on('input', function() {
+            var value = parseFloat($(this).val()).toFixed(2);
+            if (!isNaN(value)) {
+                $('#temperature').val(value);
+            }
+        });
+    });
+    </script>
+
 <script>
     $(document).ready(function () {
         $('#generateForm').submit(function (event) {
@@ -218,12 +316,5 @@
 </script>
 
 
- <!-- nouisliderribute js -->
- <script src="/assets/libs/nouislider/nouislider.min.js"></script>
- <script src="/assets/libs/wnumb/wNumb.min.js"></script>
- <!-- range slider init -->
- <script src="/assets/js/pages/range-sliders.init.js"></script>
-
- <script src="/assets/js/app.js"></script>
 
 @endsection
