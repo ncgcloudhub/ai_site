@@ -25,19 +25,12 @@
             <div class="card-header border-0">
                 <div class="d-flex align-items-center">
                     <h5 class="card-title mb-0 flex-grow-1">Order History</h5>
-                    <div class="flex-shrink-0">
-                        <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal"
-                            id="create-btn" data-bs-target="#showModal"><i
-                                class="ri-add-line align-bottom me-1"></i> Create
-                            Order</button>
-                        <button type="button" class="btn btn-info"><i
-                                class="ri-file-download-line align-bottom me-1"></i> Import</button>
-                    </div>
+                   
                 </div>
             </div>
             <div class="card-body border border-dashed border-end-0 border-start-0">
                 <form>
-                    <div class="row g-3">
+                    <div class="row g-3 justify-content-center">
                         <div class="col-xxl-5 col-sm-6">
                             <div class="search-box">
                                 <input type="text" class="form-control search"
@@ -46,50 +39,13 @@
                             </div>
                         </div>
                         <!--end col-->
-                        <div class="col-xxl-2 col-sm-6">
-                            <div>
-                                <input type="text" class="form-control" data-provider="flatpickr"
-                                    data-date-format="d M, Y" data-range-date="true"
-                                    id="demo-datepicker" placeholder="Select date">
-                            </div>
-                        </div>
-                        <!--end col-->
-                        <div class="col-xxl-2 col-sm-4">
-                            <div>
-                                <select class="form-control" data-choices data-choices-search-false
-                                    name="choices-single-default" id="idStatus">
-                                    <option value="">Status</option>
-                                    <option value="all" selected>All</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Inprogress">Inprogress</option>
-                                    <option value="Cancelled">Cancelled</option>
-                                    <option value="Pickups">Pickups</option>
-                                    <option value="Returns">Returns</option>
-                                    <option value="Delivered">Delivered</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!--end col-->
-                        <div class="col-xxl-2 col-sm-4">
-                            <div>
-                                <select class="form-control" data-choices data-choices-search-false
-                                    name="choices-single-default" id="idPayment">
-                                    <option value="">Select Payment</option>
-                                    <option value="all" selected>All</option>
-                                    <option value="Mastercard">Mastercard</option>
-                                    <option value="Paypal">Paypal</option>
-                                    <option value="Visa">Visa</option>
-                                    <option value="COD">COD</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!--end col-->
+                        
                         <div class="col-xxl-1 col-sm-4">
                             <div>
                                 <button type="button" class="btn btn-primary w-100"
                                     onclick="SearchData();"> <i
-                                        class="ri-equalizer-fill me-1 align-bottom"></i>
-                                    Filters
+                                        class="ri-search-fill me-1 align-bottom"></i>
+                                    Search
                                 </button>
                             </div>
                         </div>
@@ -100,7 +56,7 @@
             </div>
             <div class="card-body pt-0">
                 <div>
-                    <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3" role="tablist">
+                    <ul class="nav nav-tabs nav-tabs-custom nav-success mb-3 justify-content-center" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active All py-3" data-bs-toggle="tab" id="All"
                                 href="#home1" role="tab" aria-selected="true">
@@ -123,18 +79,17 @@
                            
                             <div class="col-md-3 p-3 template-card" data-category="{{$item->category_id}}">
                                 
-                                <div class="card">
+                                <div class="card" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                                     <div class="card-body">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="text" name="checkAll" value="{{$item->category_id}}">
+                                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #ffffff; display: flex; align-items: center; justify-content: center;">
+                                            <i style="font-size: 24px; color: #333;" class="{{$item->icon}}"></i>
                                         </div>
-                                        <h5 class="card-title">Order ID: <a href="{{ route('custom.template.view', ['id' => $item->id]) }}" class="fw-medium link-primary">{{$item->template_name}}</a></h5>
-                                        <p class="card-text customer_name">Customer: Frank Hook</p>
-                                        <p class="card-text product_name">Product: Puma Tshirt</p>
-                                        <p class="card-text date">Order Date: 20 Dec, 2021, <small class="text-muted">02:21 AM</small></p>
-                                        <p class="card-text amount">Amount: $654</p>
-                                        <p class="card-text payment">Payment Method: Mastercard</p>
-                                        <p class="card-text status"><span class="badge badge-soft-warning text-uppercase">Pending</span></p>
+                                        <h3 ><a href="{{ route('custom.template.view', ['id' => $item->id]) }}" class="fw-medium link-primary">{{$item->template_name}}</a></h3>
+                                        <p class="card-text customer_name">{{$item->description}}</p>
+                                       
+                                        <small class="text-muted">0 Words generated</small>
+                                        
+                                      
                                         <ul class="list-inline hstack gap-2 mb-0">
                                             <li class="list-inline-item" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="top" title="View">
                                                 <a href="apps-ecommerce-order-details" class="text-primary d-inline-block">
@@ -159,18 +114,6 @@
                             
                                 @endforeach
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                         <div class="noresult" style="display: none">
@@ -236,6 +179,9 @@
 
 @endsection
 @section('script')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script src="assets/libs/list.js/list.js.min.js"></script>
         <script src="assets/libs/list.pagination.js/list.pagination.js.min.js"></script>
 
@@ -244,7 +190,7 @@
 
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <script>
     $(document).ready(function() {
