@@ -176,9 +176,57 @@
                     </div>
                 </li>
 
+
+
+
+
+
+
+
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarExpert" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarExpert">
+                        <i class="las la-pencil-ruler"></i> <span >Chat</span>
+                    </a>
+                    <div class="collapse menu-dropdown mega-dropdown-menu" id="sidebarExpert">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{route('expert.add')}}" class="nav-link" >Expert</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('custom.template.add')}}" class="nav-link" >All Template</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('custom.template.manage')}}" class="nav-link" >Manage Template</a>
+                                    </li>
+                                   
+                                </ul>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </li>
+
+
+
+
+
+
+
+
+
+
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('openai.settings.view')}}">
-                        <i class="las la-flask"></i> <span >AI Chat</span>
+                        <i class="las la-flask"></i> <span >Settings</span>
                     </a>
                 </li>
 

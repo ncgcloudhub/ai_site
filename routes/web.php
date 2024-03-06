@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\OpenAIController;
 use App\Http\Controllers\CustomCategoryTemplateController;
 use App\Http\Controllers\CustomCategroyTemplateController;
+use App\Http\Controllers\ExpertController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -129,3 +130,9 @@ Route::post('/custom/template/store', [CustomTemplateController::class, 'CustomT
 Route::get('/custom/template/manage', [CustomTemplateController::class, 'CustomTemplateManage'])->name('custom.template.manage');
 
 Route::get('/custom/template/view/{id}', [CustomTemplateController::class, 'CustomTemplateView'])->name('custom.template.view');
+
+
+
+
+// CHAT
+Route::get('/expert/add', [ExpertController::class, 'ExpertAdd'])->name('expert.add');
