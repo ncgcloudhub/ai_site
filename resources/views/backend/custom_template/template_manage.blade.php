@@ -10,7 +10,13 @@
    .template-card:hover {
     transform: scale(.95);
     transition: transform 0.3s ease;
+    
 } 
+
+.template-card:hover .card-body {
+    background-color: #d4e9f0; /* Light blue background color */
+}
+
 </style>
 
 <div class="row">
@@ -105,7 +111,7 @@
                             <li class="nav-item">
                                 <a class="nav-link py-3 {{$item->category_name}}" data-bs-toggle="tab" id="{{$item->id}}"
                                     href="#{{$item->id}}" role="tab" aria-selected="false">
-                                    <i class="ri-checkbox-circle-line me-1 align-bottom"></i>{{$item->category_name}}
+                                    <i class="{{$item->category_icon}}"></i>{{$item->category_name}}
                                 </a>
                             </li>
                         @endforeach
@@ -115,7 +121,7 @@
                         <div class="row template-row">
                             @foreach ($templates as $item)
                            
-                            <div class="col-md-3 template-card" data-category="{{$item->category_id}}">
+                            <div class="col-md-3 p-3 template-card" data-category="{{$item->category_id}}">
                                 
                                 <div class="card">
                                     <div class="card-body">

@@ -29,7 +29,7 @@
                                 <select class="form-select" name="language" id="language" aria-label="Floating label select example">
                                     <option disabled selected="">Enter Language</option>
                                     <option value="English">English</option>
-                                    
+                                    <option value="Bengali">Bengali</option>
                                   </select>
                              
                             </div>
@@ -80,6 +80,8 @@
                         <select class="form-select" name="creative_level" id="creative_level" aria-label="Floating label select example">
                             <option disabled selected="">Enter Creative Level</option>
                             <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
                     
                           </select>
                     
@@ -88,10 +90,15 @@
                         <label for="tone" class="form-label">Choose a Tone</label>
                         <select class="form-select" name="tone" id="tone" aria-label="Floating label select example">
                             <option disabled selected="">Enter Tone</option>
-                            <option value="Professional">Professional</option>
                             <option value="Friendly">Friendly</option>
+                            <option value="Luxury">Luxury</option>
                             <option value="Relaxed">Relaxed</option>
+                            <option value="Professional">Professional</option>
                             <option value="Casual">Casual</option>
+                            <option value="Excited">Excited</option>
+                            <option value="Bold">Bold</option>
+                            <option value="Masculine">Masculine</option>
+                            <option value="Dramatic">Dramatic</option>
                     
                           </select>
                     
@@ -101,32 +108,32 @@
                 <div class="row">
 
                     <div class="col-md-6">
-                        <label for="max_result_length" class="form-label">Temperature</label>
-                        <input type="range" name="temperature" class="form-range" id="temperature" min="0" max="1" step="0.01" value="0.50">
-                        <input type="number" name="temperature_value" class="form-control" id="temperature_value" min="0" max="1" step="0.01" value="0.50">
+                        <label for="temperature" class="form-label">Temperature (Creativity)</label>
+                        <input type="range" name="temperature" class="form-range" id="temperature" min="0" max="1" step="0.01" value="0.00">
+                        <input type="number" name="temperature_value" class="form-control" id="temperature_value" min="0" max="1" step="0.01" value="0.00">
 
                     </div>
 
                     <div class="col-md-6">
-                        <label for="max_result_length" class="form-label">Top P</label>
-                        <input type="range" name="top_p" class="form-range" id="top_p" min="0" max="1" step="0.01" value="0.50">
-                        <input type="number" name="top_p_value" class="form-control" id="top_p_value" min="0" max="1" step="0.01" value="0.50">
+                        <label for="top_p" class="form-label">Top P</label>
+                        <input type="range" name="top_p" class="form-range" id="top_p" min="0" max="1" step="0.01" value="1.00">
+                        <input type="number" name="top_p_value" class="form-control" id="top_p_value" min="0" max="1" step="0.01" value="1.00">
                         
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="max_result_length" class="form-label">Frequency Penalty</label>
-                        <input type="range" name="frequency_penalty" class="form-range" id="frequency_penalty" min="0" max="2" step="0.01" value="1.00">
-                        <input type="number" name="frequency_penalty_value" class="form-control" id="frequency_penalty_value" min="0" max="2" step="0.01" value="1.00">
+                        <label for="frequency_penalty" class="form-label">Frequency Penalty</label>
+                        <input type="range" name="frequency_penalty" class="form-range" id="frequency_penalty" min="0" max="2" step="0.01" value="0.00">
+                        <input type="number" name="frequency_penalty_value" class="form-control" id="frequency_penalty_value" min="0" max="2" step="0.01" value="0.00">
 
                     </div>
 
                     <div class="col-md-6">
-                        <label for="max_result_length" class="form-label">Presence Penalty</label>
-                        <input type="range" name="presence_penalty" class="form-range" id="presence_penalty" min="0" max="2" step="0.01" value="1.00">
-                        <input type="number" name="presence_penalty_value" class="form-control" id="presence_penalty_value" min="0" max="2" step="0.01" value="1.00">
+                        <label for="presence_penalty" class="form-label">Presence Penalty</label>
+                        <input type="range" name="presence_penalty" class="form-range" id="presence_penalty" min="0" max="2" step="0.01" value="0.00">
+                        <input type="number" name="presence_penalty_value" class="form-control" id="presence_penalty_value" min="0" max="2" step="0.01" value="0.00">
 
 
 
