@@ -130,6 +130,11 @@ return [
     'openai_api_key' => env('OPENAI_API_KEY'),
 
 
+    'client_id' => env('CLIENT_ID'),
+    'client_secret' => env('CLIENT_SECRET'),
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver

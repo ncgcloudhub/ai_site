@@ -18,10 +18,13 @@ Route::get('/', function () {
 
 Route::get("/login", function( Request $request) {
 
+    $clientId = config('app.client_id');
+
+    
     $request->session()->put("state", $state = Str::random(40));
 
     $query = http_build_query([
-    "client_id" => "9b47b7d5-bea4-4cae-b288-9e106d7c755a",
+    "client_id" => $clientId,
     "redirect_uri" => "http://127.0.0.1:8080/callback",
     "response_type" => "code",
     "scope" => "",
@@ -35,7 +38,8 @@ return redirect("http://127.0.0.1:8000/oauth/authorize?" . $query);
 Route::get("/callback", function (Request $request) {
     $state = $request->session()->pull("state");
     // dd($state);
-
+    $clientId = config('app.client_id');
+    $clientSecret = config('app.client_secret');
     // throw_unless(strlen($state) > 0 && $state = $request->state, InvalidArgumentException::class);
 
     throw_unless(
@@ -47,8 +51,8 @@ Route::get("/callback", function (Request $request) {
     $response = Http::asForm()->post('http://127.0.0.1:8000/oauth/token', 
     [
         "grant_type" => "authorization_code",
-        "client_id" => "9b47b7d5-bea4-4cae-b288-9e106d7c755a",
-        "client_secret" => "mZhwUx7aLUoaOVtcEPiaoN2mZJJfxu93NoiuYC5Z",
+        "client_id" => $clientId,
+        "client_secret" => $clientSecret,
         "redirect_uri" => "http://127.0.0.1:8080/callback",
         "code" => $request->code
     ]);
