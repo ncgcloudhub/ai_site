@@ -60,7 +60,7 @@ Route::get("/callback", function (Request $request) {
 
 Route::get("/authuser", function(Request $request) {
     $access_token = $request->session()->get("access_token"); // Set your access token here
-    dd($access_token);
+    
     $response = Http::withHeaders([
         "Accept" => "application/json",
         "Authorization" => "Bearer " . $access_token
