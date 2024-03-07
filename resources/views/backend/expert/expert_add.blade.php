@@ -2,10 +2,11 @@
 @section('title') @lang('translation.dashboards') @endsection
 @section('css')
 <link href="/assets/libs/jsvectormap/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.3/mammoth.browser.min.js"></script>
+
 @endsection
 
 @section('css')
-
 <link href="{{ URL::asset('/asets/libs/dropzone/dropzone.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ URL::asset('/asets/libs/filepond/filepond.min.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ URL::asset('/asets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
@@ -18,7 +19,7 @@
 @endcomponent
 
 <div class="col-xxl-6">
-    <form method="POST" action="{{route('custom.template.store')}}" class="row g-3">
+    <form method="POST" action="{{route('custom.template.store')}}" class="row g-3" enctype="multipart/form-data">
         @csrf
     <div class="card">
         <div class="card-header align-items-center d-flex">
@@ -49,7 +50,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label for="expertise" class="form-label">Expertise</label>
+                        <div class="col"> <label for="expertise" class="form-label">Expertise</label></div>
                         <textarea name="expertise" class="form-control" id="expertise" rows="3" placeholder="Enter Expertise"></textarea>
                     </div>
                
@@ -65,9 +66,11 @@
 
         <div class="card-body custom-input-informations">
             <div class="live-preview">
-              
-                        <label for="expertise" class="form-label">Expertise</label>
-                        <textarea name="expertise" class="form-control" id="expertise" rows="3" placeholder="Enter Expertise"></textarea>
+                <div class="row">
+                    <div class="col-2"> <label for="train_expert" class="form-label">Expertise</label></div>
+                    <div class="col-3"><input type="file" name="train_upload" id="train_upload" multiple></div>
+                </div>
+                    <textarea name="train_expert" class="form-control" id="train_expert" rows="3" placeholder="Enter Expertise"></textarea>
 
             </div>
         </div>
@@ -102,6 +105,52 @@
 </div>
 
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.3/mammoth.browser.min.js"></script>
+
+
+<script>
+    $(document).ready(function(){
+        $('#train_upload').change(function(){
+            var files = $(this)[0].files;
+
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var reader = new FileReader();
+
+                // Check if the file is a TXT file
+                if (file.type === "text/plain") {
+                    reader.onload = (function(file) {
+                        return function(e) {
+                            // Append the content of TXT files to the textarea
+                            $('#train_expert').val($('#train_expert').val() + '\n' + e.target.result);
+                        };
+                    })(file);
+
+                    reader.readAsText(file);
+                } else if (file.type === "application/msword" || file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+                    reader.onload = function(e) {
+                        // Read the content of the DOCX file
+                        var arrayBuffer = e.target.result;
+                        mammoth.extractRawText({arrayBuffer: arrayBuffer})
+                            .then(function(result){
+                                // Append the extracted text content to the textarea
+                                $('#train_expert').val($('#train_expert').val() + '\n' + result.value);
+                            })
+                            .catch(function(err){
+                                console.log(err);
+                            });
+                    };
+
+                    reader.readAsArrayBuffer(file);
+                }
+            }
+        });
+    });
+</script>
+
+
 
 
 
