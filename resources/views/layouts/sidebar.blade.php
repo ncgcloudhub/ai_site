@@ -201,7 +201,7 @@
                                         <a href="{{route('expert.add')}}" class="nav-link" >Expert</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('custom.template.add')}}" class="nav-link" >All Template</a>
+                                        <a href="{{route('chat')}}" class="nav-link" >Lets Chat</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{route('custom.template.manage')}}" class="nav-link" >Manage Template</a>
