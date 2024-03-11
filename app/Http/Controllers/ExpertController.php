@@ -57,7 +57,7 @@ class ExpertController extends Controller
     // CHAT
     public function index()
     {
-        return view('backend.expert.chat');
+        return view('backend.expert.index');
     }
 
 
