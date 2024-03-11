@@ -129,6 +129,8 @@ return [
 
     'openai_api_key' => env('OPENAI_API_KEY'),
 
+    'access_token' => env('ACCESS_TOKEN'),
+
 
     'client_id' => env('CLIENT_ID'),
     'client_secret' => env('CLIENT_SECRET'),

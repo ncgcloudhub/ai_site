@@ -111,7 +111,7 @@ class ExpertController extends Controller
             // Send user message to OpenAI
             // $data = Http::withHeaders([
             //     'Content-Type' => 'application/json',
-            //     'Authorization' => 'Bearer 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',
+            //     'Authorization' => 'Bearer api_key_here',
             // ])->post('https://api.openai.com/v1/chat/completions', [
             //     'model' => 'gpt-3.5-turbo',
             //     'messages' => $conversation, // Pass the entire conversation to the API
