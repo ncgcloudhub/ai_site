@@ -2,7 +2,7 @@
 <html lang="zxx">
     <head>
         <meta charset="utf-8" />
-        <title>Dtox</title>
+        <title>TrionxAI</title>
 
         <!-- mobile responsive meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -51,7 +51,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="navbar-brand" href="index.html"
-                        ><img src="/frontend/images/logo.png" alt="logo"
+                        ><img src="/frontend/images/logo1.png" alt="logo"
                     /></a>
                     <button
                         class="navbar-toggler border-0"
@@ -125,13 +125,12 @@
                 <div class="row">
                     <div class="col-lg-12 text-center zindex-1">
                         <h1 class="mb-3">
-                            Take Control of your<br />
-                            Project and Team
+                           Explore deep into AI<br />
+                          With us
                         </h1>
                         <p class="mb-4">
-                            Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum<br />
-                            dolore eu fugiat nulla pariatur.
+                            Elevate your business with state-of-the-art AI <br />
+                            services tailored to your unique needs
                         </p>
                         <a href="#" class="btn btn-secondary btn-lg"
                             >explore us</a
@@ -139,7 +138,7 @@
                         <!-- banner image -->
                         <img
                             class="img-fluid w-100 banner-image"
-                            src="/frontend/images/hero-area/banner-img.png"
+                            src="/frontend/images/hero-area/banner-img1.png"
                             alt="banner-img"
                         />
                     </div>
@@ -203,10 +202,7 @@
                     <div class="col-lg-12 text-center">
                         <h2 class="section-title">Awesome Features</h2>
                         <p class="mb-100">
-                            Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla
-                            pariatur.<br />Excepteur sint occaecat cupidatat non
-                            proident
+                            Elevate Your Digital Presence with Intelligent Solutions - Unleashing AI Chatbots, <br />Multimedia Transformation, and Dynamic Content Generation
                         </p>
                     </div>
                     <!-- feature item -->
@@ -218,10 +214,9 @@
                                 ></i>
                             </div>
                             <div>
-                                <h4>Awesome Design</h4>
+                                <h4>AI Chatbot Integration</h4>
                                 <p>
-                                    Consectetur adipiscing elit donec tempus
-                                    pellentesque dui.
+                                    Engage and assist your website visitors with TrionxAI's advanced AI chatbot, providing seamless communication and support.
                                 </p>
                             </div>
                         </div>
@@ -235,10 +230,9 @@
                                 ></i>
                             </div>
                             <div>
-                                <h4>Easy Customize</h4>
+                                <h4>Text to Image Conversion</h4>
                                 <p>
-                                    Consectetur adipiscing elit donec tempus
-                                    pellentesque dui.
+                                    Transform textual content into captivating visuals effortlessly, as TrionxAI converts text to images, enhancing the visual appeal and accessibility of your information.
                                 </p>
                             </div>
                         </div>
@@ -250,10 +244,9 @@
                                 <i class="ti-split-v-alt feature-icon mr-4"></i>
                             </div>
                             <div>
-                                <h4>Bug free Code</h4>
+                                <h4>Text to Speech Functionality</h4>
                                 <p>
-                                    Consectetur adipiscing elit donec tempus
-                                    pellentesque dui.
+                                    Elevate user experience by converting written content into natural and expressive speech, with TrionxAI's text-to-speech feature, ensuring accessibility and convenience.
                                 </p>
                             </div>
                         </div>
@@ -265,10 +258,9 @@
                                 <i class="ti-layers-alt feature-icon mr-4"></i>
                             </div>
                             <div>
-                                <h4>Organized Layouts</h4>
+                                <h4>AI Article Generation</h4>
                                 <p>
-                                    Consectetur adipiscing elit donec tempus
-                                    pellentesque dui.
+                                    Streamline content creation with TrionxAI's AI article generation, harnessing the power of artificial intelligence to produce high-quality, relevant, and tailored articles for your website or business needs.
                                 </p>
                             </div>
                         </div>
@@ -296,21 +288,17 @@
                         <div class="seo-image">
                             <img
                                 class="img-fluid"
-                                src="/frontend/images/marketing/marketing.png"
+                                src="/frontend/images/marketing/marketing1.png"
                                 alt="form-img"
                             />
                         </div>
                     </div>
                     <div class="col-md-5">
                         <h2 class="section-title">
-                            A Complete Range Of SEO Marketing Services!
+                            Streamlined Creativity with Effortless Content Creation Templates
                         </h2>
                         <p>
-                            Far far away, behind the word mountains, far from
-                            the countries Vokalia and Consonantia.<br />
-                            There live the blind texts. Separated they live in
-                            Bookmarksgrove right at the coast of the Semantics,
-                            a large language ocean.
+                            Revolutionize your content creation process effortlessly with TrionxAI's user-friendly template system. Our ready-made templates streamline the content generation journey, ensuring efficiency and consistency. <br> Empower your creativity without the hassle, and watch your ideas come to life seamlessly.
                         </p>
                     </div>
                 </div>
@@ -346,34 +334,29 @@
                 <div class="row justify-content-between">
                     <div class="col-md-5 order-2 order-md-1">
                         <h2 class="section-title">
-                            Powerful Layout From Top To Bottom
+                            Elevate Coding Excellence with Dynamic Generation Templates
                         </h2>
                         <p class="mb-4">
-                            Far far away, behind the word mountains, far from
-                            the countries Vokalia and Consonantia, there live
-                            the blind texts. Separated they live in
-                            Bookmarksgrove right at the coast of the Semantics,
-                            a large language ocean.
+                            TrionxAI's code generation templates redefine programming simplicity, enabling developers to effortlessly craft robust solutions. The templates offer precision, adaptability, and efficiency, ensuring consistent and innovative code across diverse projects.
                         </p>
                         <ul class="pl-0 service-list">
                             <li>
                                 <i class="ti-layout-tab-window text-purple"></i
-                                >Responsive on any device
+                                >Precision
                             </li>
                             <li>
                                 <i class="ti-layout-placeholder text-purple"></i
-                                >Very easy to customize
+                                >Efficiency
                             </li>
                             <li>
-                                <i class="ti-support text-purple"></i>Effective
-                                support
+                                <i class="ti-support text-purple"></i>Simplicity
                             </li>
                         </ul>
                     </div>
                     <div class="col-md-7 order-1 order-md-2">
                         <img
                             class="img-fluid layer-3"
-                            src="/frontend/images/service/service.png"
+                            src="/frontend/images/service/service1.png"
                             alt="service"
                         />
                     </div>
