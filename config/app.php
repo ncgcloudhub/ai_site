@@ -131,6 +131,10 @@ return [
 
     'access_token' => env('ACCESS_TOKEN'),
 
+    'redirect_uri' => env('REDIRECT_URI'),
+
+    'base_url' => env('BASE_URL'),
+
 
     'client_id' => env('CLIENT_ID'),
     'client_secret' => env('CLIENT_SECRET'),

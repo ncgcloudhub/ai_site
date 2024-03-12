@@ -20,18 +20,22 @@ Route::get("/login", function( Request $request) {
 
     $clientId = config('app.client_id');
 
+    $redirecturi = config('app.redirect_uri');
+
+    $baseUrl = config('app.base_url');
+
     
     $request->session()->put("state", $state = Str::random(40));
 
     $query = http_build_query([
     "client_id" => $clientId,
-    "redirect_uri" => "http://127.0.0.1:8080/callback",
+    "redirect_uri" => $redirecturi,
     "response_type" => "code",
     "scope" => "",
     "state" => $state // Use the defined $state variable
 ]);
 
-return redirect("http://127.0.0.1:8000/oauth/authorize?" . $query);
+return redirect($baseUrl . "/oauth/authorize?" . $query);
 
 });
 
@@ -40,6 +44,8 @@ Route::get("/callback", function (Request $request) {
     // dd($state);
     $clientId = config('app.client_id');
     $clientSecret = config('app.client_secret');
+    $redirecturi = config('app.redirect_uri');
+    $baseUrl = config('app.base_url');
     // throw_unless(strlen($state) > 0 && $state = $request->state, InvalidArgumentException::class);
 
     throw_unless(
@@ -48,12 +54,12 @@ Route::get("/callback", function (Request $request) {
         'Invalid state value.'
     );
 
-    $response = Http::asForm()->post('http://127.0.0.1:8000/oauth/token', 
+    $response = Http::asForm()->post($baseUrl . "/oauth/token", 
     [
         "grant_type" => "authorization_code",
         "client_id" => $clientId,
         "client_secret" => $clientSecret,
-        "redirect_uri" => "http://127.0.0.1:8080/callback",
+        "redirect_uri" => $redirecturi,
         "code" => $request->code
     ]);
     
@@ -64,11 +70,11 @@ Route::get("/callback", function (Request $request) {
 
 Route::get("/authuser", function(Request $request) {
     $access_token = $request->session()->get("access_token"); // Set your access token here
-    
+    $baseUrl = config('app.base_url');
     $response = Http::withHeaders([
         "Accept" => "application/json",
         "Authorization" => "Bearer " . $access_token
-    ])->get("http://127.0.0.1:8000/api/user");
+    ])->get($baseUrl . "/api/user");
         
     $reponses = $response->json();
 
@@ -81,12 +87,12 @@ Route::get("/authuser", function(Request $request) {
 Route::get("/logout", function(Request $request) {
     // Revoke the access token
     $access_token = $request->session()->get("access_token");
-
+    $baseUrl = config('app.base_url');
     if ($access_token) {
         $response = Http::withHeaders([
             "Accept" => "application/json",
             "Authorization" => "Bearer " . $access_token
-        ])->post("http://127.0.0.1:8000/oauth/revoke");
+        ])->post($baseUrl . "/oauth/revoke");
 
         // Handle the response
         if ($response->successful()) {
