@@ -2,7 +2,7 @@
 @section('title') @lang('translation.chat') @endsection
 @section('css')
     <link rel="stylesheet" href="assets/libs/glightbox/glightbox.min.css">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
 <div class="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
@@ -49,7 +49,9 @@
             <div class="chat-message-list">
 
                 <ul class="list-unstyled chat-list chat-user-list" id="userList">
-                    <li class="active">
+                    @foreach ($experts as $item)
+                   
+                    <li onclick="selectExpert('{{$item->expert_name}}')">
                         <a href="javascript: void(0);">
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
@@ -59,258 +61,18 @@
                                     <span class="user-status"></span>
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Lisa Parker</p>
+                                    <p class="text-truncate mb-0">{{$item->expert_name}}</p>
                                 </div>
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript: void(0);" class="unread-msg-user">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-3.jpg') }}" class="rounded-circle img-fluid userprofile" alt="">
-                                    </div>
-                                    <span class="user-status"></span>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Frank Thomas</p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <span class="badge badge-soft-dark rounded p-1">8</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img away align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <div class="avatar-title rounded-circle bg-danger userprofile">
-                                            C
-                                        </div>
-                                    </div>
-                                    <span class="user-status"></span>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Clifford Taylor</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-4.jpg') }}" class="rounded-circle img-fluid userprofile" alt="">
-                                    </div>
-                                    <span class="user-status"></span>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Janette Caster</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);" class="unread-msg-user">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-5.jpg') }}" class="rounded-circle img-fluid userprofile" alt="">
-                                    </div>
-                                    <span class="user-status"></span>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Sarah Beattie</p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <span class="badge badge-soft-dark rounded p-1">5</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);" class="unread-msg-user">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img away align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-6.jpg') }}" class="rounded-circle img-fluid userprofile" alt="">
-                                    </div>
-                                    <span class="user-status"></span>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Nellie Cornett</p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <span class="badge badge-soft-dark rounded p-1">2</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <div class="avatar-title rounded-circle bg-warning userprofile">
-                                            C
-                                        </div>
-                                    </div>
-                                    <span class="user-status"></span>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Chris Kiernan</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img away align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <div class="avatar-title rounded-circle bg-info userprofile">
-                                            E
-                                        </div>
-                                    </div>
-                                    <span class="user-status"></span>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Edith Evans</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img away align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-7.jpg') }}" class="rounded-circle img-fluid userprofile" alt="">
-                                    </div>
-                                    <span class="user-status"></span>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Joseph Siegel</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
+                        
+                    @endforeach
+                   
                 </ul>
             </div>
 
-            <div class="d-flex align-items-center px-4 mt-4 pt-2 mb-2">
-                <div class="flex-grow-1">
-                    <h4 class="mb-0 fs-12 text-muted text-uppercase">Channels</h4>
-                </div>
-                <div class="flex-shrink-0">
-                    <div data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-placement="bottom" title="Create group">
-
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-soft-success btn-sm">
-                            <i class="ri-add-line align-bottom"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="chat-message-list">
-
-                <ul class="list-unstyled chat-list chat-user-list mb-0" id="channelList">
-                    <li>
-                        <a href="javascript: void(0);" class="unread-msg-user">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <div class="avatar-title bg-light rounded-circle text-body">
-                                            #
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Landing Design</p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <span class="badge badge-soft-dark rounded p-1">7</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <div class="avatar-title bg-light rounded-circle text-body">
-                                            #
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">General</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);" class="unread-msg-user">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <div class="avatar-title bg-light rounded-circle text-body">
-                                            #
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Project Tasks</p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <span class="badge badge-soft-dark rounded p-1">3</span>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="javascript: void(0);">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <div class="avatar-title bg-light rounded-circle text-dark">
-                                            #
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Meeting</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
-                                    <div class="avatar-xxs">
-                                        <div class="avatar-title bg-light rounded-circle text-dark">
-                                            #
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="text-truncate mb-0">Reporting</p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        
             <!-- End chat-message-list -->
         </div>
 
@@ -404,30 +166,6 @@
                             </li>
                             <!-- chat-list -->
 
-                            <li class="chat-list right">
-                                <div class="conversation-list">
-                                    <div class="user-chat-content">
-                                        <div class="ctext-wrap">
-                                            <div class="ctext-wrap-content">
-                                                <p class="mb-0 ctext-content">Good morning, How are you? What about our next meeting?</p>
-                                            </div>
-                                            <div class="dropdown align-self-start message-box-drop">
-                                                <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="ri-more-2-fill"></i>
-                                                </a>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item reply-message" href="#"><i class="ri-reply-line me-2 text-muted align-bottom"></i>Reply</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-share-line me-2 text-muted align-bottom"></i>Forward</a>
-                                                    <a class="dropdown-item copy-message" href="#"><i class="ri-file-copy-line me-2 text-muted align-bottom"></i>Copy</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-bookmark-line me-2 text-muted align-bottom"></i>Bookmark</a>
-                                                    <a class="dropdown-item delete-item" href="#"><i class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="conversation-name"><small class="text-muted time">09:08 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span></div>
-                                    </div>
-                                </div>
-                            </li>
                             <!-- chat-list -->
 
                             <!-- chat-list -->
@@ -760,8 +498,54 @@
             // Log the response to the console
             console.log("Inside Success"+ response); 
 
-            $('#chat-messages').append('<p>User: ' + message + '</p>');
-            $('#chat-messages').append('<p>Assistant: ' + response + '</p>');     
+            $('#chat-messages').append(
+                                    `<li class="chat-list right">
+                                <div class="conversation-list">
+                                    <div class="user-chat-content">
+                                        <div class="ctext-wrap">
+                                            <div class="ctext-wrap-content">
+                                                <p class="mb-0 ctext-content">`+message+`</p>
+                                            </div>
+                                            <div class="dropdown align-self-start message-box-drop">
+                                                <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="ri-more-2-fill"></i>
+                                                </a>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item reply-message" href="#"><i class="ri-reply-line me-2 text-muted align-bottom"></i>Reply</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-share-line me-2 text-muted align-bottom"></i>Forward</a>
+                                                    <a class="dropdown-item copy-message" href="#"><i class="ri-file-copy-line me-2 text-muted align-bottom"></i>Copy</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-bookmark-line me-2 text-muted align-bottom"></i>Bookmark</a>
+                                                    <a class="dropdown-item delete-item" href="#"><i class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="conversation-name"><small class="text-muted time">09:08 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span></div>
+                                    </div>
+                                </div>
+                            </li>`);    
+            $('#chat-messages').append(`<div class="user-chat-content">
+                                        <div class="ctext-wrap">
+                                            <div class="ctext-wrap-content">
+                                                <p class="mb-0 ctext-content">`+ response +`</p>
+                                            </div>
+                                            <div class="dropdown align-self-start message-box-drop">
+                                                <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="ri-more-2-fill"></i>
+                                                </a>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item reply-message" href="#"><i class="ri-reply-line me-2 text-muted align-bottom"></i>Reply</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-share-line me-2 text-muted align-bottom"></i>Forward</a>
+                                                    <a class="dropdown-item copy-message" href="#"><i class="ri-file-copy-line me-2 text-muted align-bottom"></i>Copy</a>
+                                                    <a class="dropdown-item" href="#"><i class="ri-bookmark-line me-2 text-muted align-bottom"></i>Bookmark</a>
+                                                    <a class="dropdown-item delete-item" href="#"><i class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="conversation-name"><small class="text-muted time">09:07 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span></div>
+                                    </div>`);
+
+
+             
          },
         error: function (error) {
             console.error(error);
@@ -771,6 +555,14 @@
 
         });
     </script>
+
+
+<script>
+    function selectExpert(element) {
+        // Extract the expert name and log it to the console
+        console.log('Selected expert:', element);
+    }
+</script>
 
 
 @section('script')

@@ -19,7 +19,7 @@
 @endcomponent
 
 <div class="col-xxl-6">
-    <form method="POST" action="{{route('custom.template.store')}}" class="row g-3" enctype="multipart/form-data">
+    <form method="POST" action="{{route('expert.store')}}" class="row g-3" enctype="multipart/form-data">
         @csrf
     <div class="card">
         <div class="card-header align-items-center d-flex">
@@ -59,7 +59,7 @@
     </div>
 
     {{-- 2nd Card --}}
-    <div class="card">
+    {{-- <div class="card">
         <div class="card-header align-items-center d-flex">
             <h4 class="card-title mb-0 flex-grow-1">Train Expert</h4>
         </div><!-- end card header -->
@@ -74,11 +74,11 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- 2nd Card End --}}
 
     {{-- 3rd Card --}}
-    <div class="card">
+    {{-- <div class="card">
         <div class="card-header">
             <h4 class="card-title mb-0">Profile Picture Selection</h4>
         </div><!-- end card header -->
@@ -94,7 +94,7 @@
 
         </div>
         <!-- end card body -->
-    </div>
+    </div> --}}
     {{-- 3rd Card End --}}
     <div class="col-12">
         <div class="text-end">
@@ -109,7 +109,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.3/mammoth.browser.min.js"></script>
 
-
+{{-- 
 <script>
     $(document).ready(function(){
         $('#train_upload').change(function(){
@@ -148,7 +148,7 @@
             }
         });
     });
-</script>
+</script> --}}
 
 
 

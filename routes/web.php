@@ -141,6 +141,7 @@ Route::get('/custom/template/view/{id}', [CustomTemplateController::class, 'Cust
 
 // CHAT
 Route::get('/expert/add', [ExpertController::class, 'ExpertAdd'])->name('expert.add');
+Route::post('/expert/store', [ExpertController::class, 'ExpertStore'])->name('expert.store');
 
 
 

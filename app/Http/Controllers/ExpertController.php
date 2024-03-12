@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
 use App\Models\OpenAISettings;
 use OpenAI;
+use Illuminate\Support\Carbon;
 
 class ExpertController extends Controller
 {
@@ -17,47 +18,37 @@ class ExpertController extends Controller
         return view('backend.expert.expert_add', compact('experts'));
     }
 
-    public function saveExpert(Request $request)
+    public function ExpertStore(Request $request)
     {
-        // Validate incoming request if needed
-        $validatedData = $request->validate([
-            'expert_name' => 'required|string',
-            'character_name' => 'required|string',
-            'slug' => 'required|string',
-            'description' => 'required|string',
-            'role' => 'required|string',
-            'expertise' => 'required|string',
-            'train_expert' => 'required|string',
-            'image' => 'required|string',
-            'active' => 'required|string',
-        ]);
 
-        // Create a new expert instance
-        $expert = new Expert();
-        
-        // Assign values from the request
-        $expert->expert_name = $validatedData['expert_name'];
-        $expert->character_name = $validatedData['character_name'];
-        $expert->slug = $validatedData['slug'];
-        $expert->description = $validatedData['description'];
-        $expert->role = $validatedData['role'];
-        $expert->expertise = $validatedData['expertise'];
-        $expert->train_expert = $validatedData['train_expert'];
-        $expert->image = $validatedData['image'];
-        $expert->active = $validatedData['active'];
-        
-        // Save the expert
-        $expert->save();
+        $expert_id = Expert::insertGetId([
+            
+            'expert_name' => $request->expert_name,
+            'character_name' => $request->character_name,
+            'slug' => $request->expert_name,
+            'description' => $request->description,
+            'role' => $request->role,
+            'expertise' => $request->expertise,
+            'active' => '1',
+            'created_at' => Carbon::now(),   
+    
+          ]);
 
-        // Optionally, you can return a response or redirect
-        return response()->json(['message' => 'Expert saved successfully'], 200);
+        $notification = array(
+            'message' => 'Expert Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
     }
 
 
     // CHAT
     public function index()
     {
-        return view('backend.expert.index');
+        $experts = Expert::latest()->get();
+        return view('backend.expert.chat', compact('experts'));
     }
 
 
