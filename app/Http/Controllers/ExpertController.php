@@ -48,6 +48,13 @@ class ExpertController extends Controller
     public function index()
     {
         $experts = Expert::latest()->get();
+        return view('backend.expert.expert_manage', compact('experts'));
+    }
+
+    public function ExpertChat($id)
+    {
+        $expert_selected = Expert::findOrFail($id);
+        $experts = Expert::latest()->get();
         return view('backend.expert.chat', compact('experts'));
     }
 

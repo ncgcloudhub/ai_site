@@ -147,4 +147,5 @@ Route::post('/expert/store', [ExpertController::class, 'ExpertStore'])->name('ex
 
 // TEST CHAT
 Route::get('/chat', [ExpertController::class, 'index'])->name('chat');
+Route::get('/expert/chat/{id}', [ExpertController::class, 'ExpertChat'])->name('expert.chat');
 Route::post('/chat', [ExpertController::class, 'SendMessages']);
