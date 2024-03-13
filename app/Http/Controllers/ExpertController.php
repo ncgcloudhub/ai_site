@@ -71,7 +71,8 @@ class ExpertController extends Controller
             $client = OpenAI::client($apiKey);
             $user_input =  $search;
            
-            $prompt = "You will now play a character and respond as that character (You will never break character). Your name is $expert_id->expert_name. I want you to act as a $expert_id->role. As a  $expert_id->role please answer this, $user_input. Do not include your name, role in your answer.";
+            $prompt = "You will now play a character and respond as that character (You will never break character). I want you to act as a $expert_id->role. With your vast expertise in the $expert_id->role for past 40 years, I need your help. As a $expert_id->role please answer this, $user_input. If anyone asks any questions outside of $expert_id->role, please respond with 'I am not programmed to respond to those inquiries.'";
+
     
     $result = $client->completions()->create([
                 "model" => $setting->openaimodel,
