@@ -11,46 +11,43 @@
 @slot('title') Dashboard @endslot
 @endcomponent
 
-<div class="row">
+<div class="col-xxl-6">
    
-           <div class="col-5">
+           
             <div class="card">
-               
+                <div class="card-header align-items-center d-flex">
+                    <h4 class="card-title mb-0 flex-grow-1">Category Add</h4>
+                </div><!-- end card header -->
         
                 <div class="card-body">
                   
                     <div class="live-preview">
                         <form  action="/custom/category/store" method="post" class="row g-3">
                             @csrf
-                            <div class="col-md-12">
-                                <label for="category_name" class="form-label">Category</label>
+                           
+
+                            <div class="form-floating">
                                 <input type="text" name="category_name" class="form-control" id="category_name" placeholder="Enter Category">
-                             
+                                <label for="category_name">Category</label>
                             </div>
 
-                            <div class="col-md-12">
-                                <label for="icon" class="form-label">Enter Icon</label>
+                            <div class="form-floating">
                                 <input type="text" name="category_icon" class="form-control" id="category_icon" placeholder="Enter Icon">
+                                <label for="icon">Enter Icon</label>
                             </div>
                                             
 <div class="col-12">
     <div class="text-end">
-        <button class="btn btn-rounded btn-primary mb-5">Save</button>
-        {{-- <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Generate"> --}}
+        <button class="btn btn-rounded btn-primary mb-2">Save</button>
     </div>
 </div>
                         </form>
                     </div>
-                    <div class="d-none code-view">
-        
-                    </div>
+              
                 </div>
             </div>
-           </div>
-
-           <div class="col-5">
-
-            <div class="card">
+           
+         <div class="card">
             
                 <div class="card-body pt-0">
 
@@ -63,10 +60,10 @@
 
                 </div><!-- end cardbody -->
             </div>
-           </div>
+          
          
- 
-</div>
+        </div>
+
 @endsection
 @section('script')
 <script src="{{ URL::asset('/assets/libs/@ckeditor/@ckeditor.min.js') }}"></script>

@@ -2,11 +2,6 @@
 @section('title') @lang('translation.dashboards') @endsection
 @section('css')
 <link href="/assets/libs/jsvectormap/jsvectormap.min.css" rel="stylesheet" type="text/css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.3/mammoth.browser.min.js"></script>
-
-@endsection
-
-@section('css')
 <link href="{{ URL::asset('/asets/libs/dropzone/dropzone.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ URL::asset('/asets/libs/filepond/filepond.min.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ URL::asset('/asets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css') }}">
@@ -106,8 +101,7 @@
 
 @endsection
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.3/mammoth.browser.min.js"></script>
+
 
 {{-- 
 <script>
@@ -169,4 +163,8 @@
 
 <script src="{{ URL::asset('/assets/js/pages/form-file-upload.init.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.3/mammoth.browser.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 @endsection

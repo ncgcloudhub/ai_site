@@ -24,7 +24,7 @@
         <div class="card" id="orderList">
             <div class="card-header border-0">
                 <div class="d-flex align-items-center">
-                    <h5 class="card-title mb-0 flex-grow-1">Order History</h5>
+                    <h5 class="card-title mb-0 flex-grow-1">Templates</h5>
                    
                 </div>
             </div>

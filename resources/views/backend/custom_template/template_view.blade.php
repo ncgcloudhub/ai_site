@@ -14,7 +14,7 @@
 
 <div class="row">
    
-           <div class="col-5">
+           <div class="col-xxl-6">
             <div class="card">
                
         
