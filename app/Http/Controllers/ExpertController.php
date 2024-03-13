@@ -56,7 +56,7 @@ class ExpertController extends Controller
         $expert_selected = Expert::findOrFail($id);
         $expert_selected_id = $id;
         $experts = Expert::latest()->get();
-        return view('backend.expert.chat', compact('experts','expert_selected_id'));
+        return view('backend.expert.chat', compact('experts','expert_selected_id','expert_selected'));
     }
 
 
