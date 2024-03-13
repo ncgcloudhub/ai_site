@@ -40,7 +40,7 @@
                   
                     <div class="col-12">
                         <div class="text-end">
-                            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Project">
+                            <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Save Settings">
                         </div>
                     </div>
                 </form>
