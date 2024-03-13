@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title') @lang('translation.chat') @endsection
 @section('css')
-    <link rel="stylesheet" href="assets/libs/glightbox/glightbox.min.css">
+    <link rel="stylesheet" href="/assets/libs/glightbox/glightbox.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
@@ -50,7 +50,7 @@
 
                 <ul class="list-unstyled chat-list chat-user-list" id="userList">
                     @foreach ($experts as $item) 
-                    <li onclick="selectExpert('{{$item->id}}')">
+                    <li class="{{ $expert_selected_id == $item->id ? 'active' : '' }}" onclick="selectExpert('{{$item->id}}')">
                         <a href="javascript: void(0);">
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
@@ -548,6 +548,9 @@
                                         <div class="conversation-name"><small class="text-muted time">09:07 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span></div>
                                     </div>`);
 
+                    
+                                    $('#message-input').val('');
+
 
              
          },
@@ -571,12 +574,13 @@
 
 
 @section('script')
-    <script src="assets/libs/glightbox/glightbox.min.js"></script>
+    <script src="/assets/libs/glightbox/glightbox.min.js"></script>
+
 
     <!-- fgEmojiPicker js -->
-    <script src="assets/libs/fg-emoji-picker/fg-emoji-picker.min.js"></script>
+    <script src="/assets/libs/fg-emoji-picker/fg-emoji-picker.min.js"></script>
 
     <!-- chat init js -->
-    <script src="assets/js/pages/chat.init.js"></script>
+    <script src="/assets/js/pages/chat.init.js"></script>
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 @endsection
