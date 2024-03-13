@@ -49,9 +49,8 @@
             <div class="chat-message-list">
 
                 <ul class="list-unstyled chat-list chat-user-list" id="userList">
-                    @foreach ($experts as $item)
-                   
-                    <li onclick="selectExpert('{{$item->expert_name}}')">
+                    @foreach ($experts as $item) 
+                    <li onclick="selectExpert('{{$item->id}}')">
                         <a href="javascript: void(0);">
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
@@ -68,8 +67,10 @@
                     </li>
                         
                     @endforeach
+                    
                    
                 </ul>
+                <input type="hidden" name="expert_id_selected" id="expert_id_selected">
             </div>
 
         
@@ -485,18 +486,21 @@
     
     function sendMessage() {
     var message = $('#message-input').val();
+    var expert = $('#expert_id_selected').val();
+
     // $('#message-input').val('');
     var csrfToken = $('meta[name="csrf-token"]').attr('content');
     $.ajax({
         type: 'POST',
         url: '/chat',
-        data: { message: message },
+        data: { message: message, expert: expert },
         headers: {
             'X-CSRF-TOKEN': csrfToken
         },
         success: function (response) {
             // Log the response to the console
-            console.log("Inside Success"+ response); 
+        
+            var reply = response.content;
 
             $('#chat-messages').append(
                                     `<li class="chat-list right">
@@ -526,7 +530,7 @@
             $('#chat-messages').append(`<div class="user-chat-content">
                                         <div class="ctext-wrap">
                                             <div class="ctext-wrap-content">
-                                                <p class="mb-0 ctext-content">`+ response +`</p>
+                                                <p class="mb-0 ctext-content">`+ reply +`</p>
                                             </div>
                                             <div class="dropdown align-self-start message-box-drop">
                                                 <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -560,7 +564,8 @@
 <script>
     function selectExpert(element) {
         // Extract the expert name and log it to the console
-        console.log('Selected expert:', element);
+        // console.log('Selected expert:', element);
+        var message = $('#expert_id_selected').val(element);
     }
 </script>
 
