@@ -155,47 +155,8 @@
                     <div class="position-relative" id="users-chat" >
                     <div class="chat-conversation p-3 p-lg-4 " id="chat-conversation" data-simplebar>
                         <ul class="list-unstyled chat-conversation-list" id="users-conversation">
-                            <li class="chat-list left">
-                                <div class="conversation-list">
-                                    <div class="chat-avatar">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" alt="" >
-                                    </div>
-                                    <div id="chat-messages"></div>
-                                    @if ($expert_selected_id)
-                                            <div class="user-chat-content" id="welcome_user">
-                                                <div class="ctext-wrap">
-                                                    <div class="ctext-wrap-content">
-                                                        <p class="mb-0 ctext-content">Hello, I am {{$expert_selected->expert_name}}</p>
-                                                    </div>
-                                                    <div class="dropdown align-self-start message-box-drop">
-                                                        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <i class="ri-more-2-fill"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item reply-message" href="#"><i class="ri-reply-line me-2 text-muted align-bottom"></i>Reply</a>
-                                                            <a class="dropdown-item" href="#"><i class="ri-share-line me-2 text-muted align-bottom"></i>Forward</a>
-                                                            <a class="dropdown-item copy-message" href="#"><i class="ri-file-copy-line me-2 text-muted align-bottom"></i>Copy</a>
-                                                            <a class="dropdown-item" href="#"><i class="ri-bookmark-line me-2 text-muted align-bottom"></i>Bookmark</a>
-                                                            <a class="dropdown-item delete-item" href="#"><i class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="conversation-name"><small class="text-muted time">09:07 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span></div>
-                                            </div>
-                                       
-                                    @else
-                                        <div id="welcome_user"></div>
-                                    @endif
-                                    
-                                    
-                                  
-                                </div>
-                            </li>
-                            <!-- chat-list -->
-
-                            <!-- chat-list -->
-
-                            <!-- chat-list -->
+                         
+                           
                         </ul>
                         <!-- end chat-conversation-list -->
 
@@ -528,13 +489,13 @@
         
             var reply = response.content;
 
-            $('#chat-messages').append(
+            $('#users-conversation').append(
                                     `<li class="chat-list right">
                                 <div class="conversation-list">
                                     <div class="user-chat-content">
                                         <div class="ctext-wrap">
                                             <div class="ctext-wrap-content">
-                                                <p class="mb-0 ctext-content">`+message+`</p>
+                                                <p class="mb-0 ctext-content">`+ message +`</p>
                                             </div>
                                             <div class="dropdown align-self-start message-box-drop">
                                                 <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -553,7 +514,14 @@
                                     </div>
                                 </div>
                             </li>`);    
-            $('#chat-messages').append(`<div class="user-chat-content">
+
+
+            $('#users-conversation').append(` <li class="chat-list left">
+                                <div class="conversation-list">
+                                    <div class="chat-avatar">
+                                        <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" alt="" >
+                                    </div>
+                                    <div class="user-chat-content">
                                         <div class="ctext-wrap">
                                             <div class="ctext-wrap-content">
                                                 <p class="mb-0 ctext-content">`+ reply +`</p>
@@ -572,10 +540,21 @@
                                             </div>
                                         </div>
                                         <div class="conversation-name"><small class="text-muted time">09:07 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span></div>
-                                    </div>`);
+                                    </div>
+                                </div>
+                            </li>`);
 
                     
-                                    $('#message-input').val('');
+                            var conversationList = document.getElementById('users-conversation');
+
+                            // Get the last li element within the ul
+                            var lastMessage = conversationList.lastElementChild;
+
+                            // Scroll the last li element into view, aligning it to the bottom
+                            lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+                        // Clear the input field
+                        $('#message-input').val('');
 
 
              
@@ -594,27 +573,7 @@
     function selectExpert(element) {
         // Extract the expert name and log it to the console
         var message = $('#expert_id_selected').val(element);
-
-        $('#welcome_user').append(`<div class="user-chat-content">
-                                        <div class="ctext-wrap">
-                                            <div class="ctext-wrap-content">
-                                                <p class="mb-0 ctext-content"> Hello my id is ` + element +`</p>
-                                            </div>
-                                            <div class="dropdown align-self-start message-box-drop">
-                                                <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="ri-more-2-fill"></i>
-                                                </a>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item reply-message" href="#"><i class="ri-reply-line me-2 text-muted align-bottom"></i>Reply</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-share-line me-2 text-muted align-bottom"></i>Forward</a>
-                                                    <a class="dropdown-item copy-message" href="#"><i class="ri-file-copy-line me-2 text-muted align-bottom"></i>Copy</a>
-                                                    <a class="dropdown-item" href="#"><i class="ri-bookmark-line me-2 text-muted align-bottom"></i>Bookmark</a>
-                                                    <a class="dropdown-item delete-item" href="#"><i class="ri-delete-bin-5-line me-2 text-muted align-bottom"></i>Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="conversation-name"><small class="text-muted time">09:07 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span></div>
-                                    </div>`);
+         $('#users-conversation').empty();
 
     }
 </script>
