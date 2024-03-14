@@ -73,7 +73,7 @@
     {{-- 2nd Card End --}}
 
     {{-- 3rd Card --}}
-    {{-- <div class="card">
+    <div class="card">
         <div class="card-header">
             <h4 class="card-title mb-0">Profile Picture Selection</h4>
         </div><!-- end card header -->
@@ -83,13 +83,13 @@
             <div class="avatar-xl mx-auto">
                 <input type="file"
                 class="filepond filepond-input-circle"
-                name="filepond"
+                name="image"
                 accept="image/png, image/jpeg, image/gif"/>
             </div>
 
         </div>
         <!-- end card body -->
-    </div> --}}
+    </div>
     {{-- 3rd Card End --}}
     <div class="col-12">
         <div class="text-end">

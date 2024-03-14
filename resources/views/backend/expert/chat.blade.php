@@ -55,7 +55,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0 chat-user-img online align-self-center me-2 ms-0">
                                     <div class="avatar-xxs">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" class="rounded-circle img-fluid userprofile" alt="">
+                                        <img src="{{ URL::asset('backend/uploads/expert/' . $item->image) }}" class="rounded-circle img-fluid userprofile" alt="">
                                     </div>
                                     <span class="user-status"></span>
                                 </div>
@@ -97,11 +97,12 @@
                                     <div class="flex-grow-1 overflow-hidden">
                                         <div class="d-flex align-items-center">
                                             <div class="flex-shrink-0 chat-user-img online user-own-img align-self-center me-3 ms-0">
-                                                <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" class="rounded-circle avatar-xs" alt="">
+                                                <img src="{{ URL::asset('backend/uploads/expert/' . $expert_selected->image) }}" class="rounded-circle avatar-xs" alt="">
+
                                                 <span class="user-status"></span>
                                             </div>
                                             <div class="flex-grow-1 overflow-hidden">
-                                                <h5 class="text-truncate mb-0 fs-16"><a class="text-reset username" data-bs-toggle="offcanvas" href="#userProfileCanvasExample" aria-controls="userProfileCanvasExample">Lisa Parker</a></h5>
+                                                <h5 class="text-truncate mb-0 fs-16"><a class="text-reset username" data-bs-toggle="offcanvas" href="#userProfileCanvasExample" aria-controls="userProfileCanvasExample">{{$expert_selected->expert_name}}</a></h5>
                                                 <p class="text-truncate text-muted mb-0 userStatus"><span>Online</span></p>
                                             </div>
                                         </div>
@@ -488,6 +489,7 @@
             // Log the response to the console
         
             var reply = response.content;
+            var image = response.expert_image;
 
             $('#users-conversation').append(
                                     `<li class="chat-list right">
@@ -510,7 +512,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="conversation-name"><small class="text-muted time">09:08 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span></div>
+                                       
                                     </div>
                                 </div>
                             </li>`);    
@@ -519,7 +521,7 @@
             $('#users-conversation').append(` <li class="chat-list left">
                                 <div class="conversation-list">
                                     <div class="chat-avatar">
-                                        <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" alt="" >
+                                        <img src="{{ URL::asset('backend/uploads/expert/') }}/`+image+`" alt="">
                                     </div>
                                     <div class="user-chat-content">
                                         <div class="ctext-wrap">
@@ -539,7 +541,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="conversation-name"><small class="text-muted time">09:07 am</small> <span class="text-success check-message-icon"><i class="ri-check-double-line align-bottom"></i></span></div>
+                                       
                                     </div>
                                 </div>
                             </li>`);

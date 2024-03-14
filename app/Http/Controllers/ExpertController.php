@@ -21,6 +21,17 @@ class ExpertController extends Controller
     public function ExpertStore(Request $request)
     {
 
+        $imageName = '';
+        if ($image = $request->file('image')){
+            $imageName = time().'-'.uniqid().'.'.$image->getClientOriginalExtension();
+            $image->move('backend/uploads/expert', $imageName);
+        }
+
+        // Expert::create([
+        //     'image'=>$imageName,
+        // ]);
+
+
         $expert_id = Expert::insertGetId([
             
             'expert_name' => $request->expert_name,
@@ -30,6 +41,7 @@ class ExpertController extends Controller
             'role' => $request->role,
             'expertise' => $request->expertise,
             'active' => '1',
+            'image'=>$imageName,
             'created_at' => Carbon::now(),   
     
           ]);
@@ -65,6 +77,7 @@ class ExpertController extends Controller
             $search = $request->input('message');
             $expert = $request->input('expert');
             $expert_id = Expert::findOrFail($expert);
+            $expert_image = $expert_id->image;
 
             $setting = OpenAISettings::find(1);
             $apiKey = config('app.openai_api_key');
@@ -87,7 +100,7 @@ class ExpertController extends Controller
             $content = trim($result['choices'][0]['text']);
     
             // return view('backend.custom_template.template_view', compact('title', 'content'));
-            return array('prompt' => $prompt, 'content' => $content);
+            return array('prompt' => $prompt, 'content' => $content, 'expert_image' => $expert_image);
             // return $content;
     }
 
