@@ -2,8 +2,8 @@
 @section('title') @lang('translation.orders') @endsection
 @section('content')
 @component('components.breadcrumb')
-@slot('li_1') Ecommerce @endslot
-@slot('title') Orders @endslot
+@slot('li_1') Templates @endslot
+@slot('title') All Templates @endslot
 @endcomponent
 
 <style>
@@ -60,20 +60,20 @@
                         <li class="nav-item">
                             <a class="nav-link active All py-3" data-bs-toggle="tab" id="All"
                                 href="#home1" role="tab" aria-selected="true">
-                                <i class="ri-store-2-fill me-1 align-bottom"></i> All Orders
+                                <i class="ri-store-2-fill me-1 align-bottom"></i> All Templates
                             </a>
                         </li>
                         @foreach ($customtemplatecategories as $item)
                             <li class="nav-item">
                                 <a class="nav-link py-3 {{$item->category_name}}" data-bs-toggle="tab" id="{{$item->id}}"
                                     href="#{{$item->id}}" role="tab" aria-selected="false">
-                                    <i class="{{$item->category_icon}}"></i>{{$item->category_name}}
+                                    <i class="{{$item->category_icon}}"></i> {{$item->category_name}}
                                 </a>
                             </li>
                         @endforeach
                     </ul>
 
-                    <div class="table-card mb-1">
+                    <div class="table-card m-1">
                         <div class="row template-row">
                             @foreach ($templates as $item)
                            
@@ -81,11 +81,12 @@
                                 
                                 <div class="card" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                                     <div class="card-body">
-                                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: #ffffff; display: flex; align-items: center; justify-content: center;">
-                                            <i style="font-size: 24px; color: #333;" class="{{$item->icon}}"></i>
+                                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 .125rem .3rem -0.0625rem rgba(0,0,0,.1),0 .275rem .75rem -0.0625rem rgba(249,248,249,.06)">
+                                            {{-- <i style="font-size: 24px; color: #333;" class="{{$item->icon}}"></i> --}}
+                                            <img width="22px" src="/assets/images/templates/{{$item->icon}}.png" alt="" class="img-fluid">
                                         </div>
                                         <h3 ><a href="{{ route('custom.template.view', ['id' => $item->id]) }}" class="fw-medium link-primary">{{$item->template_name}}</a></h3>
-                                        <p class="card-text customer_name">{{$item->description}}</p>
+                                        <p style="height: 3em; overflow: hidden;" class="card-text customer_name">{{$item->description}}</p>
                                        
                                         <small class="text-muted">0 Words generated</small>
                                         

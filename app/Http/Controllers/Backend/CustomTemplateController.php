@@ -17,7 +17,7 @@ class CustomTemplateController extends Controller
     }
 
     public function CustomTemplateManage(){
-        $templates = CustomTemplate::latest()->get();
+        $templates = CustomTemplate::orderby('id', 'asc')->get();
         $customtemplatecategories = CustomTemplateCategory::latest()->get();
         return view('backend.custom_template.template_manage', compact('templates','customtemplatecategories'));
     }
