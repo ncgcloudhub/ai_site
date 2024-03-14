@@ -78,15 +78,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="creative_level" class="form-label">Creative Level</label>
-                        <select class="form-select" name="creative_level" id="creative_level" aria-label="Floating label select example">
-                            <option disabled selected="">Enter Creative Level</option>
+                        <select class="form-select" name="creative_level" id="creative_level" aria-label="Floating label select example" onchange="disableInputs()">
+                            <option value="">No Creativity Level</option>
                             <option value="High">High</option>
                             <option value="Medium">Medium</option>
                             <option value="Low">Low</option>
-                    
-                          </select>
-                    
+                        </select>
                     </div>
+
                     <div class="col-md-6">
                         <label for="tone" class="form-label">Choose a Tone</label>
                         <select class="form-select" name="tone" id="tone" aria-label="Floating label select example">
@@ -110,16 +109,14 @@
 
                     <div class="col-md-6">
                         <label for="temperature" class="form-label">Temperature (Creativity)</label>
-                        <input type="range" name="temperature" class="form-range" id="temperature" min="0" max="1" step="0.01" value="0.00">
+                        <input type="range" name="temperature" class="form-range" id="temperature" min="0" max="1" step="0.01" value="0.00" >
                         <input type="number" name="temperature_value" class="form-control" id="temperature_value" min="0" max="1" step="0.01" value="0.00">
-
                     </div>
-
+                    
                     <div class="col-md-6">
                         <label for="top_p" class="form-label">Top P</label>
-                        <input type="range" name="top_p" class="form-range" id="top_p" min="0" max="1" step="0.01" value="1.00">
+                        <input type="range" name="top_p" class="form-range" id="top_p" min="0" max="1" step="0.01" value="1.00" >
                         <input type="number" name="top_p_value" class="form-control" id="top_p_value" min="0" max="1" step="0.01" value="1.00">
-                        
                     </div>
                 </div>
 
@@ -210,6 +207,27 @@
 {{-- Submit Form Editor --}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<script>
+    function disableInputs() {
+        var creativeLevel = document.getElementById("creative_level").value;
+        var temperatureInput = document.getElementById("temperature");
+        var temperatureValueInput = document.getElementById("temperature_value");
+        var topPInput = document.getElementById("top_p");
+        var topPValueInput = document.getElementById("top_p_value");
+
+        if (creativeLevel === "") {
+            temperatureInput.disabled = false;
+            temperatureValueInput.disabled = false;
+            topPInput.disabled = false;
+            topPValueInput.disabled = false;
+        } else {
+            temperatureInput.disabled = true;
+            temperatureValueInput.disabled = true;
+            topPInput.disabled = true;
+            topPValueInput.disabled = true;
+        }
+    }
+</script>
 
 <script>
     $(document).ready(function() {

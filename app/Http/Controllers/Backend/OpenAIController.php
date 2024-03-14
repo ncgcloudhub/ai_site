@@ -97,7 +97,8 @@ class OpenAIController extends Controller
 
 		$prompt =  $input->prompt;
 
-		$prompt .= 'Write in ' . $language . ' language.'  . ' The tone of voice should be ' . $tone . ' Do not write translations.';
+		$prompt .= 'Write in ' . $language . ' language. Creativity level should be ' . $creative_level . '. The tone of voice should be ' . $tone . '. Do not write translations.';
+
 
 		foreach ($input->all() as $name => $inpVal) {
             if ($name != '_token' && $name != 'project_id' && $name != 'max_tokens') {
