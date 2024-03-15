@@ -209,6 +209,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('generate.image.view')}}">
+                        <i class=" lab la-stack-exchange"></i> <span >Generate Image</span>
+                    </a>
+                </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('openai.settings.view')}}">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\OpenAIController;
 use App\Http\Controllers\CustomCategoryTemplateController;
 use App\Http\Controllers\CustomCategroyTemplateController;
 use App\Http\Controllers\ExpertController;
+use App\Http\Controllers\AIGenerateImageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -155,3 +156,10 @@ Route::post('/expert/store', [ExpertController::class, 'ExpertStore'])->name('ex
 Route::get('/chat', [ExpertController::class, 'index'])->name('chat');
 Route::get('/expert/{id}', [ExpertController::class, 'ExpertChat'])->name('expert.chat');
 Route::post('/chat', [ExpertController::class, 'SendMessages']);
+
+
+// AI Image Generate
+
+Route::get('/generate/image/view', [AIGenerateImageController::class, 'AIGenerateImageView'])->name('generate.image.view');
+
+Route::post('/generate/image', [AIGenerateImageController::class, 'AIGenerateImage'])->name('generate.image');
