@@ -162,7 +162,7 @@
                                         <a href="{{route('custom.category.add')}}" class="nav-link" >Categories</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('custom.template.add')}}" class="nav-link" >All Template</a>
+                                        <a href="{{route('custom.template.add')}}" class="nav-link" >Add Template</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{route('custom.template.manage')}}" class="nav-link" >Manage Template</a>
@@ -177,21 +177,10 @@
                 </li>
 
 
-
-
-
-
-
-
-
-
-
-
-
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarExpert" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarExpert">
-                        <i class="las la-pencil-ruler"></i> <span >Chat</span>
+                        <i class="l las la-sms"></i> <span >Chat</span>
                     </a>
                     <div class="collapse menu-dropdown mega-dropdown-menu" id="sidebarExpert">
                         <div class="row">
@@ -203,9 +192,7 @@
                                     <li class="nav-item">
                                         <a href="{{route('chat')}}" class="nav-link" >Lets Chat</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('custom.template.manage')}}" class="nav-link" >Manage Template</a>
-                                    </li>
+                                  
                                    
                                 </ul>
                             </div>
@@ -216,12 +203,11 @@
                 </li>
 
 
-
-
-
-
-
-
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('custom.template.manage')}}">
+                        <i class=" lab la-stack-exchange"></i> <span >Templates</span>
+                    </a>
+                </li>
 
 
                 <li class="nav-item">
