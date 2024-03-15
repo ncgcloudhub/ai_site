@@ -21,7 +21,7 @@
 
                 <div class="form-floating">
                     <input type="text" name="prompt" class="form-control" id="prompt" placeholder="Enter Prompt">
-                    <label for="category_name">Prompt</label>
+                    <label>Prompt</label>
                 </div>
                                 
 <div class="col-12">
@@ -30,6 +30,13 @@
 </div>
 </div>
             </form>
+
+            @if(isset($imageURL))
+            <img src="{{ $imageURL }}" alt="Generated Image">
+             @else
+            <p>Error: Failed to generate image.</p>
+             @endif
+             
         </div>
   
     </div>

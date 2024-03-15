@@ -162,4 +162,4 @@ Route::post('/chat', [ExpertController::class, 'SendMessages']);
 
 Route::get('/generate/image/view', [AIGenerateImageController::class, 'AIGenerateImageView'])->name('generate.image.view');
 
-Route::post('/generate/image', [AIGenerateImageController::class, 'AIGenerateImage'])->name('generate.image');
+Route::post('/generate/image', [AIGenerateImageController::class, 'generateImage'])->name('generate.image');
