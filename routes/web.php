@@ -163,3 +163,17 @@ Route::post('/chat', [ExpertController::class, 'SendMessages']);
 Route::get('/generate/image/view', [AIGenerateImageController::class, 'AIGenerateImageView'])->name('generate.image.view');
 
 Route::post('/generate/image', [AIGenerateImageController::class, 'generateImage'])->name('generate.image');
+
+Route::get('/download-image/{imageURL}', function ($imageURL) {
+    $response = Http::get($imageURL);
+
+    if ($response->successful()) {
+        $imageData = $response->body();
+        $fileName = basename($imageURL);
+        return response()->streamDownload(function () use ($imageData) {
+            echo $imageData;
+        }, $fileName);
+    } else {
+        return response()->json(['error' => 'Failed to download image'], 500);
+    }
+});

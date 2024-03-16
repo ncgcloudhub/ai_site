@@ -15,7 +15,7 @@ class AIGenerateImageController extends Controller
 
     public function generateImage(Request $request) {
 
-		$size = '256x256';
+		$size = '1024x1024';
 		$quality = 'standard';
 		$n = 1;
 	
@@ -27,7 +27,7 @@ class AIGenerateImageController extends Controller
             'Authorization' => 'Bearer ' . $apiKey,
             'Content-Type' => 'application/json',
         ])->post('https://api.openai.com/v1/images/generations', [
-            // 'model' => 'dall-e-3',
+            'model' => 'dall-e-3',
             'prompt' => $request->prompt,
             'size' => $size,
             'quality' => $quality,
