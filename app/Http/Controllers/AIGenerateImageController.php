@@ -14,14 +14,46 @@ class AIGenerateImageController extends Controller
 
 
     public function generateImage(Request $request) {
-
-		$size = '1024x1024';
+  
+		$apiKey = config('app.openai_api_key');
+        $size = '1024x1024';
 		$quality = 'standard';
 		$n = 1;
-	
-		$apiKey = config('app.openai_api_key');
+        $mood = 'standard';
+        $response = null;
 
-		// dd($apiKey);
+
+     if($request->dall_e_2){
+
+        if($request->style){
+            $quality = $request->style;
+        }
+
+        if($request->mood){
+            $mood = $request->mood;
+        }
+
+        if($request->image_res){
+            $size = $request->image_res;
+        }
+
+        if($request->no_of_result){
+            $n = $request->no_of_result;
+        }
+
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $apiKey,
+            'Content-Type' => 'application/json',
+        ])->post('https://api.openai.com/v1/images/generations', [
+            'prompt' => $request->prompt,
+            'size' => $size,
+            'quality' => $quality,
+            'n' => $n,
+        ]);
+    }
+    // DAll-e 2 End
+
+    if($request->dall_e_3){
 
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,
@@ -33,18 +65,24 @@ class AIGenerateImageController extends Controller
             'quality' => $quality,
             'n' => $n,
         ]);
+    }
+     // DAll-e 3 End
 
-		if ($response->successful()) {
+
+     if ($response !== null) { // Check if $response is not null before using it
+        if ($response->successful()) {
             $responseData = $response->json();
-            $imageURL = $responseData['data'][0]['url']; // Make sure to validate this path depending on the actual response structure
-            // return response()->json(['image_url' => $imageURL]);
-
-			return view('backend.image_generate.generate_image', ['imageURL' => $imageURL]);
+            $imageURL = $responseData['data'][0]['url'];
+            return response()->json(['imageURL' => $imageURL]);
+            // return view('backend.image_generate.generate_image', ['imageURL' => $imageURL]);
         } else {
-            // Handle the error accordingly
             return response()->json(['error' => 'Failed to generate image'], 500);
         }
+    } else {
+        return response()->json(['error' => 'No condition met'], 500);
+    }
 
     }
+
 
 }

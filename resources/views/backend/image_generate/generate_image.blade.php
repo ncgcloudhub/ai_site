@@ -18,8 +18,6 @@
     <div class="card-body">
       
         <div class="live-preview">
-            <form  action="/generate/image" method="post" class="row g-3">
-                @csrf
                 <div class="col-xxl-12 justify-content-center">
                    
                     <div class="card">
@@ -45,6 +43,10 @@
 
 
                                     <!-- Base Example -->
+                                    <form  action="/generate/image" method="post" class="row g-3">
+                                        @csrf
+
+                                        <input type="hidden" name="dall_e_2"  value="dall_e_2">
                                     <div class="accordion col-xxl-6 col-sm-6 mb-3 m-auto" id="default-accordion-example">
                                         <div class="accordion-item">
                                             <h2 class="accordion-header col-xxl-3" id="headingOne">
@@ -57,19 +59,19 @@
                                                     <div class="row">
                                                         <div class="col-md-3 mb-3">
                                                             <label for="input1">Image Style</label>
-                                                            <input type="text" class="form-control" id="input1" placeholder="Enter input 1">
+                                                            <input type="text" name="style" class="form-control" id="style" placeholder="Enter input 1">
                                                         </div>
                                                         <div class="col-md-3 mb-3">
                                                             <label for="input2">Mood</label>
-                                                            <input type="text" class="form-control" id="input2" placeholder="Enter input 2">
+                                                            <input type="text" name="mood" class="form-control" id="mood" placeholder="Enter input 2">
                                                         </div>
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="input3">Image Resolution</label>
-                                                            <input type="text" class="form-control" id="input3" placeholder="Enter input 3">
+                                                            <label for="input3" >Image Resolution</label>
+                                                            <input type="text" name="image_res" class="form-control" id="image_res" placeholder="Enter input 3">
                                                         </div>
                                                         <div class="col-md-3 mb-3">
                                                             <label for="input4">No. of Result</label>
-                                                            <input type="text" class="form-control" id="input4" placeholder="Enter input 4">
+                                                            <input type="text" name="no_of_result" class="form-control" id="no_of_result" placeholder="Enter input 4">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -98,9 +100,18 @@
                                         <!--end col-->
                                     </div>
                                     <!--end row-->
+                                </form>
                                    
                                 </div>
+
+
+                               
+
+                                    
                                 <div class="tab-pane" id="pill-justified-profile-1" role="tabpanel">
+                                    <form  action="/generate/image" method="post" class="row g-3">
+                                        @csrf
+                                    <input type="hidden" name="dall_e_3" value="dall_e_3">
                                     <div class="row g-3 justify-content-center">
                                         <div class="col-xxl-5 col-sm-6">
                                             <div class="search-box">
@@ -118,15 +129,21 @@
                                         </div>
                                         <!--end col-->
                                     </div>
+                                </form>
                                 </div>
+                           
                               
                                
                             </div>
                         </div><!-- end card-body -->
                     </div><!-- end card -->
                 </div><!--end col-->
+                <div class="spinner-border text-primary d-none" role="status" id="loader">
+                    <span class="sr-only">Loading...</span>
+                </div>
 
-            </form>
+                <div id="image-container"></div>
+
 
             {{-- @if(isset($imageURL)) --}}
             <div class="gallery-container">
@@ -180,4 +197,54 @@
     <script src="{{ URL::asset('/assets/libs/isotope-layout/isotope-layout.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/pages/gallery.init.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+
+
+
+{{-- Test Ajax --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Show loader
+        $('#loader').removeClass('d-none');
+
+            // Serialize form data
+            var formData = $(this).serialize();
+            
+            // Send AJAX request
+            $.ajax({
+                type: 'POST',
+                url: '/generate/image',
+                data: formData,
+                success: function(response) {
+                    if (response.hasOwnProperty('imageURL')) {
+                    // Create an image element
+                    var img = $('<img>').attr('src', response.imageURL);
+                    
+                    // When the image is fully loaded, hide the loader
+                    img.on('load', function() {
+                        $('#loader').addClass('d-none');
+                    });
+                    
+                    // Append the image to the container
+                    $('#image-container').html(img);
+                } else {
+                    console.log(response);
+                }
+                },
+                error: function(xhr, status, error) {
+                    // Handle error response
+                    // You may display an error message or perform any other actions here
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+
+
 @endsection
