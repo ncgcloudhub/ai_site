@@ -61,6 +61,7 @@
                                                         <div class="col-md-3 mb-3">
                                                             <label for="input1">Image Style</label>
                                                             <select name="style" class="form-control" id="style">
+                                                                <option disabled selected="">Enter Image Style</option>
                                                                 <option value="natural">Natural</option>
                                                                 <option value="vivid">Vivid</option>
                                                             </select>
@@ -69,6 +70,7 @@
                                                         <div class="col-md-3 mb-3">
                                                             <label for="input2">Image Quality</label>
                                                             <select name="quality" class="form-control" id="quality">
+                                                                <option disabled selected="">Enter Image Quality</option>
                                                                 <option value="standard">Standard</option>
                                                                 <option value="hd">HD</option>
                                                             </select>
@@ -78,6 +80,7 @@
                                                         <div class="col-md-3 mb-3">
                                                             <label for="input3">Image Resolution</label>
                                                             <select name="image_res" class="form-control" id="image_res">
+                                                                <option disabled selected="">Enter Image Resolution</option>
                                                                 <option value="256x256">256x256</option>
                                                                 <option value="512x512">512x512</option>
                                                                 <option value="1024x1024">1024x1024</option>
@@ -87,6 +90,7 @@
                                                         <div class="col-md-3 mb-3">
                                                             <label for="input4">No. of Result</label>
                                                             <select name="no_of_result" class="form-control" id="no_of_result">
+                                                                <option disabled selected="">Enter no. of Images</option>
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
                                                                 <option value="3">3</option>
