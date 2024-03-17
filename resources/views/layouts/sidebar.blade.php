@@ -211,7 +211,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{route('generate.image.view')}}">
-                        <i class=" lab la-stack-exchange"></i> <span >Generate Image</span>
+                        <i class=" las la-image"></i> <span >Generate Image</span>
                     </a>
                 </li>
 

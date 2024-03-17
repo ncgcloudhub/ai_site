@@ -57,32 +57,58 @@
                                             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#default-accordion-example">
                                                 <div class="accordion-body">
                                                     <div class="row">
+                                                        
                                                         <div class="col-md-3 mb-3">
                                                             <label for="input1">Image Style</label>
-                                                            <input type="text" name="style" class="form-control" id="style" placeholder="Enter input 1">
+                                                            <select name="style" class="form-control" id="style">
+                                                                <option value="natural">Natural</option>
+                                                                <option value="vivid">Vivid</option>
+                                                            </select>
                                                         </div>
+                                                        
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="input2">Mood</label>
-                                                            <input type="text" name="mood" class="form-control" id="mood" placeholder="Enter input 2">
-                                                        </div>
+                                                            <label for="input2">Image Quality</label>
+                                                            <select name="quality" class="form-control" id="quality">
+                                                                <option value="standard">Standard</option>
+                                                                <option value="hd">HD</option>
+                                                            </select>
+                                                        </div>                                                        
+
+                                                        
                                                         <div class="col-md-3 mb-3">
-                                                            <label for="input3" >Image Resolution</label>
-                                                            <input type="text" name="image_res" class="form-control" id="image_res" placeholder="Enter input 3">
+                                                            <label for="input3">Image Resolution</label>
+                                                            <select name="image_res" class="form-control" id="image_res">
+                                                                <option value="256x256">256x256</option>
+                                                                <option value="512x512">512x512</option>
+                                                                <option value="1024x1024">1024x1024</option>
+                                                            </select>
                                                         </div>
+                                                        
                                                         <div class="col-md-3 mb-3">
                                                             <label for="input4">No. of Result</label>
-                                                            <input type="text" name="no_of_result" class="form-control" id="no_of_result" placeholder="Enter input 4">
+                                                            <select name="no_of_result" class="form-control" id="no_of_result">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                <option value="10">10</option>
+                                                            </select>
                                                         </div>
+                                                        
+
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    
-
-
-                                    <div class="row g-3 justify-content-center">
+                                 <div class="row g-3 justify-content-center">
                                         <div class="col-xxl-5 col-sm-6">
                                             <div class="search-box">
                                                 <input type="text" class="form-control search" name="prompt" id="prompt"
@@ -112,6 +138,60 @@
                                     <form  action="/generate/image" method="post" class="row g-3">
                                         @csrf
                                     <input type="hidden" name="dall_e_3" value="dall_e_3">
+
+                                    <div class="accordion col-xxl-6 col-sm-6 mb-3 m-auto" id="default-accordion-example">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header col-xxl-3" id="headingOne">
+                                                <button class="accordion-button col-md-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                    Advance Settings
+                                                </button>
+                                            </h2>
+                                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#default-accordion-example">
+                                                <div class="accordion-body">
+                                                    <div class="row">
+                                                        
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="input1">Image Style</label>
+                                                            <select name="style" class="form-control" id="style">
+                                                                <option value="natural">Natural</option>
+                                                                <option value="vivid">Vivid</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="input2">Image Quality</label>
+                                                            <select name="quality" class="form-control" id="quality">
+                                                                <option value="standard">Standard</option>
+                                                                <option value="hd">HD</option>
+                                                            </select>
+                                                        </div>                                                        
+
+                                                        
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="input3">Image Resolution</label>
+                                                            <select name="image_res" class="form-control" id="image_res">
+                                                                <option value="1024x1024">1024x1024</option>
+                                                                <option value="1792x1024">1792x1024</option>
+                                                                <option value="1024x1792">1024x1792</option>
+                                                            </select>
+                                                        </div>
+                                                        
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="input4">No. of Result</label>
+                                                            <select name="no_of_result" class="form-control" id="no_of_result">
+                                                                <option value="1">1</option>
+                                                                
+                                                            </select>
+                                                        </div>
+                                                        
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="row g-3 justify-content-center">
                                         <div class="col-xxl-5 col-sm-6">
                                             <div class="search-box">
