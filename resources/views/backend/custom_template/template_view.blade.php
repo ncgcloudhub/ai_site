@@ -79,7 +79,7 @@
                     <div class="col-md-6">
                         <label for="creative_level" class="form-label">Creative Level</label>
                         <select class="form-select" name="creative_level" id="creative_level" aria-label="Floating label select example" onchange="disableInputs()">
-                            <option value="">No Creativity Level</option>
+                            <option disabled selected="">No Creativity Level</option>
                             <option value="High">High</option>
                             <option value="Medium">Medium</option>
                             <option value="Low">Low</option>

@@ -55,7 +55,7 @@ class OpenAIController extends Controller
 		$frequency_penalty_value = 0;
 		$presence_penalty_value = 0;
 		$tone = 'professional';
-		$creative_level = 'high';
+		$creative_level = 'High';
 		
 		
 		$apiKey = config('app.openai_api_key');
