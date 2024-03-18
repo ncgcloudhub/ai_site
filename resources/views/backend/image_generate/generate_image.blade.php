@@ -94,7 +94,8 @@
                                                         
                                                         <div class="col-md-3 mb-3">
                                                             <label for="input4">No. of Result</label>
-                                                            <select name="no_of_result" class="form-control" id="no_of_result">
+                                                            <input type="integer" name="no_of_result" id="no_of_result" value="2">
+                                                            {{-- <select name="no_of_result" class="form-control" id="no_of_result">
                                                                 <option disabled selected="">Enter no. of Images</option>
                                                                 <option value="1">1</option>
                                                                 <option value="2">2</option>
@@ -106,7 +107,7 @@
                                                                 <option value="8">8</option>
                                                                 <option value="9">9</option>
                                                                 <option value="10">10</option>
-                                                            </select>
+                                                            </select> --}}
                                                         </div>
                                                         
 
@@ -314,8 +315,12 @@
                 url: '/generate/image',
                 data: formData,
                 success: function(response) {
+
+                    // console.log(response);
+
                     if (response.hasOwnProperty('imageURL')) {
                     // Create an image element
+
                     var img = $('<img>').attr('src', response.imageURL);
                     
                     // When the image is fully loaded, hide the loader

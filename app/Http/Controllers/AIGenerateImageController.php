@@ -14,7 +14,8 @@ class AIGenerateImageController extends Controller
 
 
     public function generateImage(Request $request) {
-  
+        
+       
 		$apiKey = config('app.openai_api_key');
         $size = '1024x1024';
         $style = 'vivid';
@@ -40,6 +41,7 @@ class AIGenerateImageController extends Controller
 
         if($request->no_of_result){
             $n = $request->no_of_result;
+            $n = intval($n);
         }
 
         $response = Http::withHeaders([
@@ -52,6 +54,8 @@ class AIGenerateImageController extends Controller
             'quality' => $quality,
             'n' => $n,
         ]);
+
+        return $response;
     }
     // DAll-e 2 End
 
@@ -92,8 +96,9 @@ class AIGenerateImageController extends Controller
      if ($response !== null) { // Check if $response is not null before using it
         if ($response->successful()) {
             $responseData = $response->json();
-            $imageURL = $responseData['data'][0]['url'];
-            return response()->json(['imageURL' => $imageURL]);
+            // $imageURL = $responseData['data'][0]['url'];
+            // return response()->json(['imageURL' => $imageURL]);
+            return  $responseData;
             // return view('backend.image_generate.generate_image', ['imageURL' => $imageURL]);
         } else {
             return response()->json(['error' => 'Failed to generate image'], 500);
