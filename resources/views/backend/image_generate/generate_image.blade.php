@@ -24,7 +24,7 @@
                         <div class="card-body">
                            
                             <!-- Nav tabs -->
-                            <ul class="nav nav-pills nav-justified col-2 mb-3 m-auto" role="tablist">
+                            <ul class="nav nav-pills nav-justified col-md-2 mb-3 m-auto" role="tablist">
                                 <li class="nav-item waves-effect waves-light">
                                         <a class="nav-link active" data-bs-toggle="tab" href="#pill-justified-home-1" role="tab">
                                             Dall-E 2
@@ -47,15 +47,20 @@
                                         @csrf
 
                                         <input type="hidden" name="dall_e_2"  value="dall_e_2">
-                                    <div class="accordion col-xxl-6 col-sm-6 mb-3 m-auto" id="default-accordion-example">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header col-xxl-3" id="headingOne">
-                                                <button class="accordion-button col-md-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                    Advance Settings
-                                                </button>
-                                            </h2>
-                                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#default-accordion-example">
-                                                <div class="accordion-body">
+                                        <div class="accordion accordion-flush col-xxl-6 m-auto mt-2" id="accordionFlushExample">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="flush-headingOne">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                                        Advance Settings
+                                                    </button>
+                                                </h2>
+                                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                                                    data-bs-parent="#accordionFlushExample">
+                                                    <div class="accordion-body">
+            
+
+                                                    
                                                     <div class="row">
                                                         
                                                         <div class="col-md-3 mb-3">
@@ -143,15 +148,19 @@
                                         @csrf
                                     <input type="hidden" name="dall_e_3" value="dall_e_3">
 
-                                    <div class="accordion col-xxl-6 col-sm-6 mb-3 m-auto" id="default-accordion-example">
+                                    <div class="accordion accordion-flush col-xxl-6 m-auto mt-2" id="accordionFlushExample">
                                         <div class="accordion-item">
-                                            <h2 class="accordion-header col-xxl-3" id="headingOne">
-                                                <button class="accordion-button col-md-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            <h2 class="accordion-header" id="flush-headingOne">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                                     Advance Settings
                                                 </button>
                                             </h2>
-                                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#default-accordion-example">
+                                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                                                data-bs-parent="#accordionFlushExample">
                                                 <div class="accordion-body">
+
+
                                                     <div class="row">
                                                         
                                                         <div class="col-md-3 mb-3">

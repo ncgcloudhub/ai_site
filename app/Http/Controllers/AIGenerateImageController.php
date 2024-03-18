@@ -17,20 +17,21 @@ class AIGenerateImageController extends Controller
   
 		$apiKey = config('app.openai_api_key');
         $size = '1024x1024';
+        $style = 'vivid';
 		$quality = 'standard';
 		$n = 1;
-        $mood = 'standard';
+      
         $response = null;
 
 
      if($request->dall_e_2){
 
-        if($request->style){
-            $quality = $request->style;
+        if($request->quality){
+            $quality = $request->quality;
         }
 
-        if($request->mood){
-            $mood = $request->mood;
+        if($request->style){
+            $style = $request->style;
         }
 
         if($request->image_res){
@@ -47,6 +48,7 @@ class AIGenerateImageController extends Controller
         ])->post('https://api.openai.com/v1/images/generations', [
             'prompt' => $request->prompt,
             'size' => $size,
+            'style' => $style,
             'quality' => $quality,
             'n' => $n,
         ]);
@@ -55,6 +57,23 @@ class AIGenerateImageController extends Controller
 
     if($request->dall_e_3){
 
+
+        if($request->style){
+            $quality = $request->style;
+        }
+
+        if($request->style){
+            $style = $request->style;
+        }
+
+        if($request->image_res){
+            $size = $request->image_res;
+        }
+
+        if($request->no_of_result){
+            $n = $request->no_of_result;
+        }
+
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $apiKey,
             'Content-Type' => 'application/json',
@@ -62,6 +81,7 @@ class AIGenerateImageController extends Controller
             'model' => 'dall-e-3',
             'prompt' => $request->prompt,
             'size' => $size,
+            'style' => $style,
             'quality' => $quality,
             'n' => $n,
         ]);
