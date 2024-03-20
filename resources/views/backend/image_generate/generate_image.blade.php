@@ -236,7 +236,27 @@
                     <span class="sr-only">Loading...</span>
                 </div>
 
-                <div id="image-container"></div>
+                {{-- <div id="image-container"></div> --}}
+
+                {{-- askjdgksa --}}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="row gallery-wrapper">
+                                            <div class="element-item col-xxl-3 col-xl-4 col-sm-6 image-container" id="image-container">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- sadasdasdads --}}
 
 
             {{-- @if(isset($imageURL)) --}}
@@ -316,28 +336,53 @@
                 data: formData,
                 success: function(response) {
 
-                    // console.log(response);
-
-                    if (response.hasOwnProperty('imageURL')) {
-                    // Create an image element
-
-                    var img = $('<img>').attr('src', response.imageURL);
-                    
-                    // When the image is fully loaded, hide the loader
-                    img.on('load', function() {
-                        $('#loader').addClass('d-none');
-                    });
-                    
-                    // Append the image to the container
-                    $('#image-container').html(img);
-                } else {
                     console.log(response);
-                }
+
+                    
+                        $('#image-container').empty(); // Clear previous images if any
+                        response.data.forEach(function(imageData) {
+                             // Create an image element
+                             var temp = `<div class="gallery-box card">
+                                        <div class="gallery-container">
+                                            <a class="image-popup" href="${imageData.url}" title="">
+                                                <img class="gallery-img img-fluid mx-auto" src="${imageData.url}" alt="" />
+                                                <div class="gallery-overlay">
+                                                    <h5 class="overlay-caption">Glasses and laptop from above</h5>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="box-content">
+                                            <div class="d-flex align-items-center mt-1">
+                                                <div class="flex-grow-1 text-muted">by <a href="" class="text-body text-truncate">Ron Mackie</a></div>
+                                                <div class="flex-shrink-0">
+                                                    <div class="d-flex gap-3">
+                                                        <button type="button" class="btn btn-sm fs-13 btn-link text-body text-decoration-none px-0">
+                                                            <i class="ri-thumb-up-fill text-muted align-bottom me-1"></i> 2.2K
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm fs-13 btn-link text-body text-decoration-none px-0">
+                                                            <i class="ri-question-answer-fill text-muted align-bottom me-1"></i> 1.3K
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                             var img = $('<img>').attr('src', imageData.url);
+
+                            // Append the image to the container
+                            $('#image-container').append(temp);
+            });
+              
+
+                  // Hide loader
+                  $('#loader').addClass('d-none');
                 },
                 error: function(xhr, status, error) {
                     // Handle error response
                     // You may display an error message or perform any other actions here
                     console.error(xhr.responseText);
+                    $('#loader').addClass('d-none');
                 }
             });
         });

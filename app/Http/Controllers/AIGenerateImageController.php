@@ -55,7 +55,7 @@ class AIGenerateImageController extends Controller
             'n' => $n,
         ]);
 
-        return $response;
+        // return $response;
     }
     // DAll-e 2 End
 
